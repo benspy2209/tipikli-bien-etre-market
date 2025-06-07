@@ -24,10 +24,11 @@ export interface ProductVariant {
 }
 
 export type ProductCategory = 
-  | "grater" 
-  | "ebook" 
-  | "brush" 
-  | "peeler";
+  | "grater-brush" 
+  | "grater-peeler" 
+  | "grater-large"
+  | "grater-small"
+  | "grater-cookbooks";
 
 export type ProductType = 
   | "physical" 
