@@ -1,12 +1,14 @@
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "Accueil", href: "#home" },
+    { name: "Accueil", href: "/" },
+    { name: "Produits", href: "/products" },
     { name: "Le Marché Live", href: "#live" },
     { name: "Les Essentiels", href: "#essentials" },
     { name: "Tipikli Me", href: "#tipikli-me" },
@@ -18,26 +20,26 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-br from-tipikli-sage to-tipikli-sage-dark rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-sm">T</span>
             </div>
             <span className="font-display font-semibold text-xl text-tipikli-sage-dark">
               Tipikli
             </span>
-          </div>
+          </Link>
 
           {/* Navigation Desktop */}
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="text-sm font-medium text-foreground hover:text-tipikli-sage transition-colors duration-200 relative group"
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-tipikli-sage transition-all duration-300 group-hover:w-full"></span>
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -68,14 +70,14 @@ const Header = () => {
           <div className="md:hidden absolute top-16 left-0 right-0 glass-effect border-b border-tipikli-beige animate-fade-in-up">
             <nav className="flex flex-col space-y-4 p-4">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="text-sm font-medium text-foreground hover:text-tipikli-sage transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
               <Button className="bg-tipikli-sage hover:bg-tipikli-sage-dark text-white mt-4">
                 Rejoindre Tipikli Me

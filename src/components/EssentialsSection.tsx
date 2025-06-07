@@ -2,6 +2,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import { getFeaturedProducts } from "@/data/products";
 import { getCategoryConfig } from "@/data/categories";
 import { useState } from "react";
@@ -105,17 +106,19 @@ const EssentialsSection = () => {
 
                     {/* Boutons */}
                     <div className="space-y-2 pt-4">
-                      <Button 
-                        className="w-full bg-tipikli-sage hover:bg-tipikli-sage-dark text-white transition-all duration-300"
-                        onClick={() => setSelectedProduct(selectedProduct === product.id ? null : product.id)}
-                      >
-                        {selectedProduct === product.id ? "Masquer détails" : "Voir détails"}
-                      </Button>
+                      <Link to={`/product/${product.id}`}>
+                        <Button 
+                          className="w-full bg-tipikli-sage hover:bg-tipikli-sage-dark text-white transition-all duration-300"
+                        >
+                          Voir le produit
+                        </Button>
+                      </Link>
                       <Button 
                         variant="outline" 
                         className="w-full border-tipikli-sage text-tipikli-sage hover:bg-tipikli-sage hover:text-white text-xs"
+                        onClick={() => setSelectedProduct(selectedProduct === product.id ? null : product.id)}
                       >
-                        ❤️ Ajouter aux favoris
+                        {selectedProduct === product.id ? "Masquer détails" : "❤️ Ajouter aux favoris"}
                       </Button>
                     </div>
 
@@ -144,11 +147,13 @@ const EssentialsSection = () => {
                 Plus de 100 produits testés et approuvés par nos experts, disponibles dans nos marchés partenaires
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-tipikli-sage hover:bg-tipikli-sage-dark text-white">
-                  📹 Voir les démos
-                </Button>
+                <Link to="/products">
+                  <Button className="bg-tipikli-sage hover:bg-tipikli-sage-dark text-white">
+                    🛍️ Voir tous les produits
+                  </Button>
+                </Link>
                 <Button variant="outline" className="border-tipikli-sage text-tipikli-sage hover:bg-tipikli-sage hover:text-white">
-                  ⭐ Tous les produits
+                  📹 Voir les démos
                 </Button>
               </div>
             </div>
