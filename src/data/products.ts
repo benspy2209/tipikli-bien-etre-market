@@ -1,28 +1,200 @@
+
 import { Product } from "@/types/product";
 import { getProductImage } from "@/utils/imageUtils";
 
 export const products: Product[] = [
-  // The Grater Large - Grandes râpes par ville
+  // The Grater Large - 16 produits individuels par ville
   {
-    id: "grater-large",
-    name: "The Grater Large",
-    description: "Râpe révolutionnaire testée dans les marchés de Belgique",
-    longDescription: "La râpe qui révolutionne votre cuisine. Testée et approuvée dans plus de 25 marchés belges, elle vous permettra de râper ail, gingembre et zestes sans effort.",
-    price: 29,
-    originalPrice: 39,
-    image: getProductImage("The Grater Large", "Bruxelles"),
+    id: "grater-liege",
+    name: "The Grater Liège",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Liège"),
     category: "grater-large",
     type: "physical",
     badge: "Best-seller",
-    features: ["Lame ultra-tranchante", "Facile à nettoyer", "Design ergonomique"],
-    variants: [
-      { id: "grater-ath", name: "Ath", price: 29, image: getProductImage("", "Ath"), location: "Ath" },
-      { id: "grater-auderghem", name: "Auderghem", price: 29, image: getProductImage("", "Auderghem"), location: "Auderghem" },
-      { id: "grater-bastogne", name: "Bastogne", price: 29, image: getProductImage("", "Bastogne"), location: "Bastogne" },
-      { id: "grater-beveren", name: "Beveren", price: 29, image: getProductImage("", "Beveren"), location: "Beveren" },
-      { id: "grater-binche", name: "Binche", price: 29, image: getProductImage("", "Binche"), location: "Binche" },
-      { id: "grater-brugges", name: "Brugges", price: 29, image: getProductImage("", "Brugges"), location: "Brugges" }
-    ]
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-namur",
+    name: "The Grater Namur",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Namur"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-bastogne",
+    name: "The Grater Bastogne",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Bastogne"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-brugges",
+    name: "The Grater Brugges",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Brugges"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-tournai",
+    name: "The Grater Tournai",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Tournai"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-ath",
+    name: "The Grater Ath",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Ath"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-mouscron",
+    name: "The Grater Mouscron",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Mouscron"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-rhode-saint-genese",
+    name: "The Grater Rhode-Saint-Genèse",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Rhode-Saint-Genèse"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-waterloo",
+    name: "The Grater Waterloo",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Waterloo"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-saint-gilles",
+    name: "The Grater Saint-Gilles",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Saint-Gilles"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-evere",
+    name: "The Grater Evere",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Evere"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-jette",
+    name: "The Grater Jette",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Jette"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-etterbeek",
+    name: "The Grater Etterbeek",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Etterbeek"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-ixelles",
+    name: "The Grater Ixelles",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Ixelles"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-auderghem",
+    name: "The Grater Auderghem",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Auderghem"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
+  },
+  {
+    id: "grater-libramont",
+    name: "The Grater Libramont",
+    description: "The Grater – L'outil ultime pour râper avec précision !",
+    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.",
+    price: 39,
+    image: getProductImage("", "Libramont"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Best-seller",
+    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
   },
 
   // The Grater Cookbooks - E-books ail
