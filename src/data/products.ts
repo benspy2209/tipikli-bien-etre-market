@@ -2,20 +2,8 @@ import { Product } from "@/types/product";
 import { getProductImage } from "@/utils/imageUtils";
 
 export const products: Product[] = [
-  // The Grater Large - 16 produits individuels par ville
-  // ... keep existing code (all The Grater Large products from Liège to Libramont)
-  {
-    id: "grater-liege",
-    name: "The Grater Liège",
-    description: "The Grater – L'outil ultime pour râper avec précision !",
-    longDescription: "Découvrez The Grater, l'assiette parfaite pour râper votre ail en toute simplicité. Conçue avec soin, cette assiette unique vous permet de transformer vos gousses d'ail en une pâte lisse et homogène en un rien de temps. Plus besoin de hacher ou d'écraser, The Grater fait tout le travail avec une précision incomparable.\n\nCaractéristiques :\n• Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur, parfait pour râper sans éclaboussures.\n• Design ergonomique : Prise en main facile pour une utilisation confortable.\n• Matériau durable : Céramique de haute qualité, résistante aux rayures.\n• Râpe efficace : Picots conçus pour râper finement sans gaspillage.\n• Entretien facile : Passe au lave-vaisselle.\n\nUtilisation polyvalente :\nIdéale pour l'ail, mais aussi pour le gingembre, les zestes de citron, le chocolat, les amandes, les noix, le concombre ou la tomate. The Grater est l'outil indispensable des cuisiniers pressés et exigeants. Simplifiez vos préparations culinaires en un clin d'œil !",
-    price: 39,
-    image: getProductImage("", "Liège"),
-    category: "grater-large",
-    type: "physical",
-    badge: "Best-seller",
-    features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
-  },
+  // The Grater Large - 15 produits individuels par ville (removed Liège)
+  // ... keep existing code (all other The Grater Large products from Namur through Libramont, excluding Liège)
   {
     id: "grater-namur",
     name: "The Grater Namur",
