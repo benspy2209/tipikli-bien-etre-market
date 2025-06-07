@@ -5,15 +5,22 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { products } from "@/data/products";
 import { getCategoryConfig } from "@/data/categories";
-import { ArrowLeft, Heart, ShoppingCart, MapPin, Globe, Star } from "lucide-react";
+import { ArrowLeft, ShoppingCart, Plus, Minus } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useState } from "react";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const product = products.find(p => p.id === id);
+  const { addToCart, items } = useCart();
+  const { toast } = useToast();
+  const [quantities, setQuantities] = useState<{[key: string]: number}>({});
 
-  if (!product) {
+  const selectedProduct = products.find(p => p.id === id);
+
+  if (!selectedProduct) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -28,8 +35,6 @@ const ProductDetail = () => {
     );
   }
 
-  const categoryConfig = getCategoryConfig(product.category);
-
   const getBadgeColor = (badge: string) => {
     switch (badge) {
       case "Best-seller": return "bg-red-500";
@@ -43,256 +48,248 @@ const ProductDetail = () => {
     }
   };
 
+  const handleAddToCart = (product: any, variant?: string) => {
+    const qty = quantities[`${product.id}-${variant || 'main'}`] || 1;
+    for (let i = 0; i < qty; i++) {
+      addToCart(product, variant);
+    }
+    toast({
+      title: "Produit ajouté au panier",
+      description: `${product.name}${variant ? ` (${variant})` : ''} x${qty}`,
+    });
+  };
+
+  const updateQuantity = (productId: string, variant: string, delta: number) => {
+    const key = `${productId}-${variant}`;
+    const current = quantities[key] || 1;
+    const newQty = Math.max(1, current + delta);
+    setQuantities(prev => ({ ...prev, [key]: newQty }));
+  };
+
+  const getCartCount = () => {
+    return items.reduce((count, item) => count + item.quantity, 0);
+  };
+
   return (
     <div className="min-h-screen">
       <Header />
       
       <main className="pt-20 pb-16">
         <div className="container mx-auto px-4">
-          {/* Breadcrumb */}
-          <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-8">
-            <Link to="/" className="hover:text-tipikli-sage">Accueil</Link>
-            <span>/</span>
-            <Link to="/products" className="hover:text-tipikli-sage">Produits</Link>
-            <span>/</span>
-            <span className="text-tipikli-sage-dark">{product.name}</span>
+          {/* En-tête avec panier */}
+          <div className="flex justify-between items-center mb-8">
+            <Link to="/products">
+              <Button variant="outline" className="border-tipikli-sage text-tipikli-sage hover:bg-tipikli-sage hover:text-white">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Retour aux produits
+              </Button>
+            </Link>
+            
+            <div className="flex items-center space-x-2 bg-tipikli-cream rounded-lg px-4 py-2">
+              <ShoppingCart className="h-5 w-5 text-tipikli-sage" />
+              <span className="font-medium text-tipikli-sage-dark">
+                Panier ({getCartCount()})
+              </span>
+            </div>
           </div>
 
-          {/* Bouton retour */}
-          <Link to="/products">
-            <Button variant="outline" className="mb-8 border-tipikli-sage text-tipikli-sage hover:bg-tipikli-sage hover:text-white">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Retour aux produits
-            </Button>
-          </Link>
+          {/* Titre principal */}
+          <div className="text-center mb-12">
+            <h1 className="text-3xl md:text-4xl font-display font-bold text-tipikli-sage-dark mb-4">
+              Tous nos produits disponibles
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Découvrez notre gamme complète et ajoutez vos produits favoris au panier
+            </p>
+          </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Image et galerie */}
-            <div className="space-y-6">
-              <div className="relative">
-                <div className="w-full h-96 bg-gradient-to-br from-tipikli-sage/10 to-tipikli-wood/10 rounded-2xl flex items-center justify-center overflow-hidden">
-                  {product.image ? (
-                    <img 
-                      src={product.image} 
-                      alt={product.name}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="text-8xl">{categoryConfig.icon}</div>
-                  )}
-                </div>
-                
-                {product.badge && (
-                  <Badge 
-                    className={`absolute top-4 right-4 text-sm ${getBadgeColor(product.badge)} text-white`}
-                  >
-                    {product.badge}
-                  </Badge>
-                )}
-              </div>
-
-              {/* Variantes avec images (pour les graters par ville) */}
-              {product.variants && product.variants.length > 0 && product.category === "grater" && (
-                <div className="grid grid-cols-4 gap-4">
-                  {product.variants.slice(0, 8).map((variant) => (
-                    <div key={variant.id} className="relative group cursor-pointer">
-                      <div className="w-full h-20 bg-gradient-to-br from-tipikli-sage/10 to-tipikli-wood/10 rounded-lg overflow-hidden">
-                        {variant.image ? (
+          {/* Grille de tous les produits */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product) => {
+              const categoryConfig = getCategoryConfig(product.category);
+              
+              return (
+                <Card key={product.id} className="group hover:shadow-xl transition-all duration-300 border-tipikli-beige bg-white">
+                  <CardContent className="p-6">
+                    {/* Image du produit */}
+                    <div className="relative mb-6">
+                      <div className="w-full h-48 bg-gradient-to-br from-tipikli-sage/10 to-tipikli-wood/10 rounded-2xl flex items-center justify-center overflow-hidden">
+                        {product.image ? (
                           <img 
-                            src={variant.image} 
-                            alt={variant.location}
+                            src={product.image} 
+                            alt={product.name}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                           />
                         ) : (
-                          <div className="flex items-center justify-center h-full text-2xl">{categoryConfig.icon}</div>
+                          <div className="text-6xl">{categoryConfig.icon}</div>
                         )}
                       </div>
-                      <p className="text-xs text-center mt-1 text-muted-foreground">{variant.location}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Informations produit */}
-            <div className="space-y-8">
-              {/* En-tête */}
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-tipikli-sage/20 rounded-full flex items-center justify-center">
-                    <span className="text-xl">{categoryConfig.icon}</span>
-                  </div>
-                  <span className="text-sm font-medium text-tipikli-sage">{categoryConfig.name}</span>
-                </div>
-
-                <h1 className="text-3xl md:text-4xl font-display font-bold text-tipikli-sage-dark">
-                  {product.name}
-                </h1>
-
-                <p className="text-lg text-muted-foreground">
-                  {product.description}
-                </p>
-
-                {product.longDescription && (
-                  <p className="text-muted-foreground">
-                    {product.longDescription}
-                  </p>
-                )}
-              </div>
-
-              {/* Prix */}
-              <div className="flex items-center space-x-4">
-                <span className="text-3xl font-bold text-tipikli-sage-dark">
-                  {product.price}€
-                </span>
-                {product.originalPrice && (
-                  <span className="text-xl text-muted-foreground line-through">
-                    {product.originalPrice}€
-                  </span>
-                )}
-                {product.originalPrice && (
-                  <Badge className="bg-red-500 text-white">
-                    -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
-                  </Badge>
-                )}
-              </div>
-
-              {/* Caractéristiques */}
-              {product.features && (
-                <div className="space-y-3">
-                  <h3 className="font-semibold text-lg text-tipikli-sage-dark">Caractéristiques</h3>
-                  <ul className="space-y-2">
-                    {product.features.map((feature, index) => (
-                      <li key={index} className="flex items-center">
-                        <Star className="w-4 h-4 mr-3 text-tipikli-sage" />
-                        <span className="text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Boutons d'action */}
-              <div className="space-y-4">
-                <div className="flex space-x-4">
-                  <Button className="flex-1 bg-tipikli-sage hover:bg-tipikli-sage-dark text-white">
-                    <ShoppingCart className="mr-2 h-4 w-4" />
-                    Ajouter au panier
-                  </Button>
-                  <Button variant="outline" className="border-tipikli-sage text-tipikli-sage hover:bg-tipikli-sage hover:text-white">
-                    <Heart className="h-4 w-4" />
-                  </Button>
-                </div>
-                
-                <Button variant="outline" className="w-full border-tipikli-sage text-tipikli-sage hover:bg-tipikli-sage hover:text-white">
-                  📹 Voir la démo
-                </Button>
-              </div>
-
-              {/* Type de produit */}
-              <div className="bg-tipikli-cream rounded-lg p-4">
-                <div className="flex items-center space-x-2">
-                  {product.type === "digital" ? (
-                    <>
-                      <Globe className="w-5 h-5 text-tipikli-sage" />
-                      <span className="font-medium text-tipikli-sage-dark">Produit numérique</span>
-                    </>
-                  ) : (
-                    <>
-                      <MapPin className="w-5 h-5 text-tipikli-sage" />
-                      <span className="font-medium text-tipikli-sage-dark">Produit physique</span>
-                    </>
-                  )}
-                </div>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {product.type === "digital" 
-                    ? "Livraison instantanée par email"
-                    : "Disponible dans nos marchés partenaires"
-                  }
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Section variantes détaillées */}
-          {product.variants && product.variants.length > 0 && (
-            <div className="mt-16">
-              <h2 className="text-2xl font-display font-bold text-tipikli-sage-dark mb-8">
-                Toutes les variantes disponibles ({product.variants.length})
-              </h2>
-              
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {product.variants.map((variant) => (
-                  <Card key={variant.id} className="hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="font-semibold text-tipikli-sage-dark">
-                          {variant.location || variant.language || variant.name}
-                        </h3>
-                        <span className="text-lg font-bold text-tipikli-sage-dark">
-                          {variant.price}€
-                        </span>
-                      </div>
                       
-                      {variant.image && (
-                        <div className="w-full h-32 bg-gradient-to-br from-tipikli-sage/10 to-tipikli-wood/10 rounded-lg overflow-hidden mb-4">
-                          <img 
-                            src={variant.image} 
-                            alt={variant.location || variant.language || variant.name}
-                            className="w-full h-full object-cover"
-                          />
+                      {product.badge && (
+                        <Badge className={`absolute -top-2 -right-2 text-xs ${getBadgeColor(product.badge)} text-white`}>
+                          {product.badge}
+                        </Badge>
+                      )}
+
+                      <div className="absolute -bottom-4 left-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg">
+                        <span className="text-lg">{categoryConfig.icon}</span>
+                      </div>
+                    </div>
+
+                    {/* Informations produit */}
+                    <div className="space-y-4">
+                      <h3 className="font-semibold text-lg text-tipikli-sage-dark leading-tight">
+                        {product.name}
+                      </h3>
+                      
+                      <p className="text-sm text-muted-foreground">
+                        {product.description}
+                      </p>
+
+                      {product.features && (
+                        <ul className="space-y-1">
+                          {product.features.slice(0, 3).map((feature, index) => (
+                            <li key={index} className="text-xs text-muted-foreground flex items-center">
+                              <span className="w-1.5 h-1.5 bg-tipikli-sage rounded-full mr-2"></span>
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+
+                      {/* Prix */}
+                      <div className="flex items-center space-x-2">
+                        <span className="text-xl font-bold text-tipikli-sage-dark">
+                          {product.price}€
+                        </span>
+                        {product.originalPrice && (
+                          <span className="text-sm text-muted-foreground line-through">
+                            {product.originalPrice}€
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Contrôles quantité pour produit principal */}
+                      <div className="flex items-center justify-between bg-tipikli-cream rounded-lg p-3">
+                        <span className="text-sm font-medium text-tipikli-sage-dark">Quantité:</span>
+                        <div className="flex items-center space-x-2">
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            onClick={() => updateQuantity(product.id, 'main', -1)}
+                            className="w-8 h-8 p-0"
+                          >
+                            <Minus className="h-3 w-3" />
+                          </Button>
+                          <span className="text-sm font-medium w-8 text-center">
+                            {quantities[`${product.id}-main`] || 1}
+                          </span>
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            onClick={() => updateQuantity(product.id, 'main', 1)}
+                            className="w-8 h-8 p-0"
+                          >
+                            <Plus className="h-3 w-3" />
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* Bouton ajouter au panier principal */}
+                      <Button 
+                        className="w-full bg-tipikli-sage hover:bg-tipikli-sage-dark text-white"
+                        onClick={() => handleAddToCart(product)}
+                      >
+                        <ShoppingCart className="mr-2 h-4 w-4" />
+                        Ajouter au panier
+                      </Button>
+
+                      {/* Variantes si disponibles */}
+                      {product.variants && product.variants.length > 0 && (
+                        <div className="mt-4 p-4 bg-tipikli-cream rounded-lg space-y-3">
+                          <h4 className="font-medium text-sm text-tipikli-sage-dark">
+                            Variantes disponibles ({product.variants.length}):
+                          </h4>
+                          <div className="space-y-2 max-h-40 overflow-y-auto">
+                            {product.variants.map((variant) => (
+                              <div key={variant.id} className="flex items-center justify-between p-2 bg-white rounded border">
+                                <div className="flex-1">
+                                  <span className="text-xs font-medium">
+                                    {variant.location || variant.language || variant.name}
+                                  </span>
+                                  <div className="text-xs text-tipikli-sage-dark font-bold">
+                                    {variant.price}€
+                                  </div>
+                                </div>
+                                <div className="flex items-center space-x-1">
+                                  <Button 
+                                    size="sm" 
+                                    variant="outline"
+                                    onClick={() => updateQuantity(product.id, variant.id, -1)}
+                                    className="w-6 h-6 p-0"
+                                  >
+                                    <Minus className="h-2 w-2" />
+                                  </Button>
+                                  <span className="text-xs w-4 text-center">
+                                    {quantities[`${product.id}-${variant.id}`] || 1}
+                                  </span>
+                                  <Button 
+                                    size="sm" 
+                                    variant="outline"
+                                    onClick={() => updateQuantity(product.id, variant.id, 1)}
+                                    className="w-6 h-6 p-0"
+                                  >
+                                    <Plus className="h-2 w-2" />
+                                  </Button>
+                                  <Button 
+                                    size="sm"
+                                    className="bg-tipikli-sage hover:bg-tipikli-sage-dark text-white text-xs px-2 py-1 ml-2"
+                                    onClick={() => handleAddToCart({...product, price: variant.price}, variant.location || variant.language || variant.name)}
+                                  >
+                                    +
+                                  </Button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       )}
-                      
-                      <Button className="w-full bg-tipikli-sage hover:bg-tipikli-sage-dark text-white">
-                        Choisir cette variante
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+
+          {/* Récapitulatif panier */}
+          {getCartCount() > 0 && (
+            <div className="mt-16 bg-white rounded-3xl p-8 shadow-lg border-2 border-tipikli-sage">
+              <h2 className="text-2xl font-display font-bold text-tipikli-sage-dark mb-6 text-center">
+                Récapitulatif du panier
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                  <div className="text-2xl font-bold text-tipikli-sage-dark">{getCartCount()}</div>
+                  <div className="text-sm text-muted-foreground">Articles</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-tipikli-sage-dark">
+                    {items.reduce((total, item) => total + (item.product.price * item.quantity), 0)}€
+                  </div>
+                  <div className="text-sm text-muted-foreground">Total</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-tipikli-sage-dark">{items.length}</div>
+                  <div className="text-sm text-muted-foreground">Types</div>
+                </div>
+                <div>
+                  <Button className="w-full bg-tipikli-sage hover:bg-tipikli-sage-dark text-white">
+                    Finaliser
+                  </Button>
+                </div>
               </div>
             </div>
           )}
-
-          {/* Section recommandations */}
-          <div className="mt-16">
-            <h2 className="text-2xl font-display font-bold text-tipikli-sage-dark mb-8">
-              Produits recommandés
-            </h2>
-            
-            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {products
-                .filter(p => p.id !== product.id && p.category === product.category)
-                .slice(0, 4)
-                .map((relatedProduct) => (
-                  <Card key={relatedProduct.id} className="group hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-4">
-                      <Link to={`/product/${relatedProduct.id}`}>
-                        <div className="w-full h-32 bg-gradient-to-br from-tipikli-sage/10 to-tipikli-wood/10 rounded-lg flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300">
-                          <span className="text-3xl">{getCategoryConfig(relatedProduct.category).icon}</span>
-                        </div>
-                        <h3 className="font-semibold text-tipikli-sage-dark mb-2 group-hover:text-tipikli-sage">
-                          {relatedProduct.name}
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          {relatedProduct.description}
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <span className="font-bold text-tipikli-sage-dark">
-                            {relatedProduct.price}€
-                          </span>
-                          {relatedProduct.badge && (
-                            <Badge className={`text-xs ${getBadgeColor(relatedProduct.badge)} text-white`}>
-                              {relatedProduct.badge}
-                            </Badge>
-                          )}
-                        </div>
-                      </Link>
-                    </CardContent>
-                  </Card>
-                ))}
-            </div>
-          </div>
         </div>
       </main>
 
