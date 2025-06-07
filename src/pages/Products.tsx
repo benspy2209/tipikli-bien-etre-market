@@ -84,14 +84,19 @@ const Products = () => {
                     {/* Image du produit */}
                     <div className="relative mb-6">
                       <div className="w-full h-48 bg-gradient-to-br from-tipikli-sage/10 to-tipikli-wood/10 rounded-2xl flex items-center justify-center overflow-hidden">
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                          onError={(e) => {
-                            e.currentTarget.src = "/src/images/test.png";
-                          }}
-                        />
+                        {product.image ? (
+                          <img 
+                            src={product.image} 
+                            alt={product.name}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                            onError={(e) => {
+                              // Fallback vers l'icône si l'image ne charge pas
+                              e.currentTarget.style.display = 'none';
+                              e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                            }}
+                          />
+                        ) : null}
+                        <div className="hidden text-6xl">{categoryConfig.icon}</div>
                       </div>
                       
                       {product.badge && (
@@ -130,21 +135,15 @@ const Products = () => {
                         </ul>
                       )}
 
-                      {/* Variantes */}
+                      {/* Variantes résumé */}
                       {product.variants && product.variants.length > 0 && (
                         <div className="bg-tipikli-cream rounded-lg p-3">
-                          <p className="text-xs font-medium text-tipikli-sage-dark mb-2">
-                            {product.variants.length} variantes disponibles :
+                          <p className="text-xs font-medium text-tipikli-sage-dark mb-1">
+                            {product.variants.length} variantes disponibles
                           </p>
                           <div className="text-xs text-muted-foreground">
-                            {product.category === "grater" && (
-                              <span>Villes : {product.variants.slice(0, 3).map(v => v.location).join(", ")}
-                                {product.variants.length > 3 && `... +${product.variants.length - 3}`}
-                              </span>
-                            )}
-                            {product.category === "ebook" && (
-                              <span>Langues : {product.variants.map(v => v.language).join(", ")}</span>
-                            )}
+                            {product.category === "grater" && "Disponible dans différentes villes"}
+                            {product.category === "ebook" && "Disponible en plusieurs langues"}
                           </div>
                         </div>
                       )}
@@ -177,10 +176,38 @@ const Products = () => {
                         </Button>
                       </div>
 
-                      {/* Détails extensibles */}
-                      {selectedProduct === product.id && product.longDescription && (
-                        <div className="mt-4 p-4 bg-tipikli-cream rounded-lg text-sm text-muted-foreground">
-                          {product.longDescription}
+                      {/* Détails extensibles avec TOUTES les variantes */}
+                      {selectedProduct === product.id && (
+                        <div className="mt-4 p-4 bg-tipikli-cream rounded-lg space-y-4">
+                          {product.longDescription && (
+                            <div className="text-sm text-muted-foreground">
+                              {product.longDescription}
+                            </div>
+                          )}
+                          
+                          {/* Affichage de TOUTES les variantes */}
+                          {product.variants && product.variants.length > 0 && (
+                            <div>
+                              <h4 className="font-medium text-sm text-tipikli-sage-dark mb-3">
+                                Toutes les variantes disponibles :
+                              </h4>
+                              <div className="grid gap-2 max-h-60 overflow-y-auto">
+                                {product.variants.map((variant) => (
+                                  <div 
+                                    key={variant.id} 
+                                    className="flex justify-between items-center p-2 bg-white rounded border text-xs"
+                                  >
+                                    <span className="font-medium">
+                                      {variant.location || variant.language || variant.name}
+                                    </span>
+                                    <span className="text-tipikli-sage-dark font-bold">
+                                      {variant.price}€
+                                    </span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>
