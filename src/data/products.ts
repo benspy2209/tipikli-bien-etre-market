@@ -1,4 +1,3 @@
-
 import { Product } from "@/types/product";
 import { getProductImage } from "@/utils/imageUtils";
 
@@ -98,15 +97,14 @@ export const products: Product[] = [
   {
     id: "silicon-peeler",
     name: "The Grater Peeler",
-    description: "Éplucheur en silicone révolutionnaire",
-    longDescription: "Éplucheur en silicone de qualité alimentaire. Doux pour vos mains, efficace sur tous types de légumes et fruits. Parfait complément à votre râpe The Grater.",
-    price: 12,
-    originalPrice: 16,
+    description: "Silicone Peeler – Éplucheur d'ail en silicone, simple et pratique",
+    longDescription: "Éplucher l'ail n'a jamais été aussi facile ! Avec notre Silicone Peeler, retirez la peau des gousses d'ail en quelques secondes sans odeur sur les mains. Fabriqué en silicone de haute qualité, cet accessoire souple et durable vous permet d'éplucher l'ail en un tour de main : il suffit de glisser la gousse à l'intérieur, de rouler doucement et de laisser la magie opérer !",
+    price: 5,
     image: getProductImage("Silicon Peeler"),
     category: "grater-peeler",
     type: "physical",
     badge: "Innovation",
-    features: ["Silicone alimentaire", "Antidérapant", "Facile à nettoyer"]
+    features: ["Rapide et sans effort", "Hygiénique", "Facile à nettoyer", "Design compact"]
   }
 ];
 
