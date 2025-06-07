@@ -66,34 +66,32 @@ export const products: Product[] = [
     ]
   },
 
-  // The Grater Brush - Brosses
+  // The Grater Brush - Brosse simple
   {
     id: "small-brush",
-    name: "The Grater Brush",
-    description: "Brosse de nettoyage parfaite pour vos râpes",
-    longDescription: "Brosse spécialement conçue pour nettoyer en profondeur vos râpes The Grater. Poils résistants et manche ergonomique.",
-    price: 8,
-    originalPrice: 12,
+    name: "Small Brush",
+    description: "Petite brosse de nettoyage pour râpe – L'outil pratique pour rassembler vos ingrédients fraîchement râpés",
+    longDescription: "Cette petite brosse est l'accessoire indispensable pour rassembler facilement les ingrédients râpés avec The Grater. Conçue avec des poils doux mais résistants, elle permet de récupérer chaque particule d'ail, de gingembre, de zestes ou de chocolat sans effort et sans laisser de résidus sur la râpe. Sa taille compacte la rend idéale pour nettoyer les coins difficiles d'accès et pour éviter le gaspillage d'ingrédients.",
+    price: 5,
     image: getProductImage("Small Brush"),
     category: "grater-brush",
     type: "physical",
     badge: "Pratique",
-    features: ["Poils résistants", "Manche ergonomique", "Compact"]
+    features: ["Utilisation facile", "Pratique et compacte", "Poignée ergonomique"]
   },
 
   // The Grater Brush - Lot de 2
   {
     id: "small-brush-lot",
-    name: "The Grater Brush - Lot de 2",
-    description: "Pack économique de 2 brosses The Grater",
-    longDescription: "Lot de 2 brosses The Grater Brush pour un nettoyage optimal. Parfait pour avoir toujours une brosse propre sous la main.",
-    price: 14,
-    originalPrice: 20,
+    name: "Lot de 2 Small Brush",
+    description: "Petite brosse de nettoyage pour râpe – L'outil pratique pour rassembler vos ingrédients fraîchement râpés",
+    longDescription: "Cette petite brosse est l'accessoire indispensable pour rassembler facilement les ingrédients râpés avec The Grater. Conçue avec des poils doux mais résistants, elle permet de récupérer chaque particule d'ail, de gingembre, de zestes ou de chocolat sans effort et sans laisser de résidus sur la râpe. Sa taille compacte la rend idéale pour nettoyer les coins difficiles d'accès et pour éviter le gaspillage d'ingrédients.",
+    price: 9,
     image: getProductImage("Lot de 2 Small Brush"),
     category: "grater-brush",
     type: "physical",
     badge: "Économique",
-    features: ["Pack de 2", "Poils résistants", "Économique"]
+    features: ["Pack de 2", "Utilisation facile", "Pratique et compacte"]
   },
 
   // The Grater Peeler

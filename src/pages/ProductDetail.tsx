@@ -80,11 +80,24 @@ const ProductDetail = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Product Image/Icon */}
+            {/* Product Image */}
             <div className="space-y-6">
               <Card className="p-8">
-                <div className="w-48 h-48 bg-gradient-to-br from-tipikli-sage/20 to-tipikli-wood/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
-                  <span className="text-8xl">{categoryConfig.icon}</span>
+                <div className="w-full h-80 bg-gradient-to-br from-tipikli-sage/20 to-tipikli-wood/20 rounded-3xl flex items-center justify-center mx-auto mb-6 overflow-hidden">
+                  <img 
+                    src={selectedVariantData?.image || product.image} 
+                    alt={product.name}
+                    className="w-full h-full object-cover rounded-3xl"
+                    onError={(e) => {
+                      // Fallback to icon if image fails to load
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent) {
+                        parent.innerHTML = `<span class="text-8xl">${categoryConfig.icon}</span>`;
+                      }
+                    }}
+                  />
                 </div>
                 {product.badge && (
                   <div className="text-center">
