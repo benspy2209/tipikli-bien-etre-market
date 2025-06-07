@@ -1,10 +1,10 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { getFeaturedProducts } from "@/data/products";
 import { getCategoryConfig } from "@/data/categories";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const EssentialsSection = () => {
   const products = getFeaturedProducts();
@@ -147,8 +147,12 @@ const EssentialsSection = () => {
                 <Button className="bg-tipikli-sage hover:bg-tipikli-sage-dark text-white">
                   📹 Voir les démos
                 </Button>
-                <Button variant="outline" className="border-tipikli-sage text-tipikli-sage hover:bg-tipikli-sage hover:text-white">
-                  ⭐ Tous les produits
+                <Button 
+                  asChild
+                  variant="outline" 
+                  className="border-tipikli-sage text-tipikli-sage hover:bg-tipikli-sage hover:text-white"
+                >
+                  <Link to="/products">⭐ Tous les produits</Link>
                 </Button>
               </div>
             </div>
