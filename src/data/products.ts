@@ -9,8 +9,7 @@ export const products: Product[] = [
     image: "/src/images/namur.jpeg",
     category: "grater-large",
     type: "physical",
-    badge: "Artisanal",
-    inStock: true
+    badge: "Artisanal"
   },
   {
     id: "grater-large-bastogne",
@@ -20,8 +19,7 @@ export const products: Product[] = [
     image: "/src/images/bastogne.jpeg",
     category: "grater-large",
     type: "physical",
-    badge: "Artisanal",
-    inStock: true
+    badge: "Artisanal"
   },
   {
     id: "grater-large-brugges",
@@ -31,8 +29,7 @@ export const products: Product[] = [
     image: "/src/images/brugges.jpeg",
     category: "grater-large",
     type: "physical",
-    badge: "Artisanal",
-    inStock: true
+    badge: "Artisanal"
   },
   {
     id: "grater-large-tournai",
@@ -42,8 +39,7 @@ export const products: Product[] = [
     image: "/src/images/tournai.jpeg",
     category: "grater-large",
     type: "physical",
-    badge: "Artisanal",
-    inStock: true
+    badge: "Artisanal"
   },
   {
     id: "grater-large-ath",
@@ -53,8 +49,7 @@ export const products: Product[] = [
     image: "/src/images/ath.jpeg",
     category: "grater-large",
     type: "physical",
-    badge: "Artisanal",
-    inStock: true
+    badge: "Artisanal"
   },
   {
     id: "grater-large-mouscron",
@@ -64,8 +59,7 @@ export const products: Product[] = [
     image: "/src/images/mouscron.jpeg",
     category: "grater-large",
     type: "physical",
-    badge: "Artisanal",
-    inStock: true
+    badge: "Artisanal"
   },
   {
     id: "grater-large-rhode-saint-genese",
@@ -75,8 +69,7 @@ export const products: Product[] = [
     image: "/src/images/Rhode-Saint-genese.jpeg",
     category: "grater-large",
     type: "physical",
-    badge: "Artisanal",
-    inStock: true
+    badge: "Artisanal"
   },
   {
     id: "grater-large-liege",
@@ -86,8 +79,7 @@ export const products: Product[] = [
     image: "/src/images/liege.jpeg",
     category: "grater-large",
     type: "physical",
-    badge: "Artisanal",
-    inStock: true
+    badge: "Artisanal"
   },
   {
     id: "grater-small-charleroi",
