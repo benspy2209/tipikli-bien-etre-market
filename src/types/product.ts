@@ -1,3 +1,4 @@
+
 export interface Product {
   id: string;
   name: string;
@@ -11,7 +12,6 @@ export interface Product {
   variants?: ProductVariant[];
   badge?: string;
   features?: string[];
-  inStock?: boolean;
 }
 
 export interface ProductVariant {
