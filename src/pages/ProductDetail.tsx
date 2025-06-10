@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { products } from "@/data/products";
 import { getCategoryConfig } from "@/data/categories";
+import { getProductImage } from "@/utils/imageUtils";
 import { useCart } from "@/hooks/useCart";
 import { ArrowLeft, Heart, Minus, Plus, ShoppingCart, Play } from "lucide-react";
 
@@ -43,12 +44,22 @@ const ProductDetail = () => {
   const selectedVariantData = product.variants?.find(v => v.id === selectedVariant);
   const currentPrice = selectedVariantData?.price || product.price;
 
+  // Fonction pour obtenir l'image appropriée
+  const getCurrentImage = () => {
+    if (selectedVariantData?.name) {
+      // Utiliser getProductImage avec le nom de la variante pour les mousseurs
+      return getProductImage(selectedVariantData.name);
+    }
+    // Pour l'affichage par défaut, utiliser l'image du produit principal
+    return selectedVariantData?.image || product.image;
+  };
+
   const handleAddToCart = () => {
     addToCart({
       id: selectedVariant || product.id,
       name: selectedVariantData?.name ? `${product.name} - ${selectedVariantData.name}` : product.name,
       price: currentPrice,
-      image: selectedVariantData?.image || product.image,
+      image: getCurrentImage(),
       quantity
     });
   };
@@ -89,7 +100,7 @@ const ProductDetail = () => {
               <Card className="p-4">
                 <div className="w-full aspect-square bg-gradient-to-br from-tipikli-beige to-white rounded-3xl flex items-center justify-center mx-auto mb-6 overflow-hidden">
                   <img 
-                    src={selectedVariantData?.image || product.image} 
+                    src={getCurrentImage()} 
                     alt={product.name}
                     className="w-full h-full object-contain p-6"
                     onError={(e) => {
