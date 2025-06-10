@@ -1,3 +1,4 @@
+
 import { Product } from "@/types/product";
 import { getProductImage } from "@/utils/imageUtils";
 
@@ -306,7 +307,7 @@ export const products: Product[] = [
     features: ["Format compact : 13 cm de diamètre et 3 cm de profondeur", "Ergonomique et pratique", "Céramique durable", "Râpe fine et efficace", "Entretien facile"]
   },
 
-  // The Grater Cookbooks - Livres et E-books
+  // The Grater Cookbooks - Livres et E-books (prix mis à jour pour les e-books)
   {
     id: "grater-book-paper",
     name: "📖 The Grater, le livre (version papier)",
@@ -324,7 +325,7 @@ export const products: Product[] = [
     name: "💻 The Grater, l'e-book",
     description: "Le guide complet pour maîtriser The Grater - Version numérique",
     longDescription: "<p>La plupart des appareils de cuisine sont encombrants et peu pratiques, et nos placards débordent d'ustensiles que nous n'utilisons presque jamais. C'est ici que The Grater se démarque. Simple, sans électricité et sans montage, il transforme chaque ingrédient en un instant. Mais pour profiter pleinement de cet accessoire unique, découvrez le livre de recettes spécialement conçu pour The Grater.</p>\n<p>Ce livre est bien plus qu'un recueil de recettes. Il vous guide dans une exploration des saveurs, avec des préparations pensées pour tirer le meilleur parti de The Grater. Découvrez des recettes simples et gourmandes qui subliment chaque ingrédient avec des textures et des arômes intenses, du gingembre à l'ail en passant par le chocolat et les zestes d'agrumes.</p>\n<p>Créé pour inspirer, ce livre est une invitation à la cuisine saine, où chaque plat devient une expérience pleine de goût et de simplicité. Il vous offre des idées pour chaque occasion et vous fait voyager vers des saveurs authentiques, tout en vous aidant à transformer The Grater en allié indispensable dans votre quotidien.</p>",
-    price: 10,
+    price: 5,
     image: getProductImage("The grater, l'e-book"),
     category: "grater-cookbooks",
     type: "digital",
@@ -336,7 +337,7 @@ export const products: Product[] = [
     name: "💻 L'ail dans tous ses états (Français)",
     description: "Guide complet de l'ail - E-book en français",
     longDescription: "<p>Ce livre est une véritable exploration de l'ail, de ses incroyables propriétés nutritionnelles à ses nombreux bienfaits pour la santé. Vous y découvrirez tout ce qu'il faut savoir sur cet ingrédient essentiel, ainsi que des recettes délicieuses, dont plusieurs ont été spécialement conçues pour être préparées avec \"The Grater\".</p>\n<p>Que vous soyez un chef expérimenté ou que vous cherchiez simplement à intégrer plus d'ail dans votre alimentation quotidienne, ce livre est fait pour vous. Avec des conseils pratiques et des recettes uniques, il vous guide pour transformer l'ail en un ingrédient central de votre cuisine, de la manière la plus simple et savoureuse.</p>",
-    price: 10,
+    price: 5,
     image: getProductImage("L'ail dans tous ses états, l'ebook"),
     category: "grater-cookbooks",
     type: "digital",
@@ -348,7 +349,7 @@ export const products: Product[] = [
     name: "💻 All about garlic (English)",
     description: "Complete garlic guide - E-book in English",
     longDescription: "<h3>Garlic in All Its Forms</h3>\nExplore the world of garlic in all its fascinating forms and flavors. This book delves into the rich history, health benefits, and culinary versatility of garlic, a staple ingredient cherished across cultures and cuisines. Discover the secrets of using garlic to enhance dishes, boost wellness, and add depth to your cooking.\n\nWhether you're a gourmet chef or simply a garlic lover, this book will inspire you to embrace garlic in every way possible, with insights, tips, and recipes that celebrate its unique character.",
-    price: 10,
+    price: 5,
     image: getProductImage("All about garlic - e book"),
     category: "grater-cookbooks",
     type: "digital",
@@ -360,7 +361,7 @@ export const products: Product[] = [
     name: "💻 Alles over knoflook (Nederlands)",
     description: "Complete knoflook gids - E-book in het Nederlands",
     longDescription: "<h3>Knoflook in al zijn vormen</h3>\nOntdek de wereld van knoflook in al zijn boeiende vormen en smaken. Dit boek gaat in op de rijke geschiedenis, gezondheidsvoordelen en culinaire veelzijdigheid van knoflook, een onmisbaar ingrediënt dat over de hele wereld gewaardeerd wordt. Leer de geheimen van knoflook kennen en hoe je het kunt gebruiken om gerechten te verrijken, welzijn te bevorderen en diepgang aan je kookkunsten toe te voegen.\n\nOf je nu een fijnproever bent of gewoon een knoflookliefhebber, dit boek inspireert je om knoflook in al zijn vormen te omarmen, met inzichten, tips en recepten die het unieke karakter benadrukken.",
-    price: 10,
+    price: 5,
     image: getProductImage("Alles over knoflook - e-book"),
     category: "grater-cookbooks",
     type: "digital",
@@ -372,7 +373,7 @@ export const products: Product[] = [
     name: "💻 Le gingembre dans tous ses états (Français)",
     description: "Guide complet du gingembre - E-book en français",
     longDescription: "<h3>Le Gingembre : Voyage au cœur d'une racine aux mille vertus</h3>\nPlongez dans l'histoire fascinante du gingembre, cette racine aux multiples facettes qui a voyagé à travers les continents et les époques. De l'Asie à l'Occident, découvrez comment le gingembre s'est imposé dans les traditions culinaires et culturelles du monde entier. Ce livre explore les usages, les bienfaits et les secrets de cette racine intemporelle, indispensable en cuisine et en santé.\n\nIdéal pour les passionnés de cuisine et les amateurs de bien-être, ce livre vous invite à redécouvrir le gingembre sous toutes ses formes, avec des anecdotes, des conseils et des idées pour l'intégrer facilement dans votre quotidien.",
-    price: 10,
+    price: 5,
     image: getProductImage("Le gingembre dans tous ses états - l'e book"),
     category: "grater-cookbooks",
     type: "digital",
@@ -384,7 +385,7 @@ export const products: Product[] = [
     name: "💻 Ginger in all its flavor (English)",
     description: "Complete ginger guide - E-book in English",
     longDescription: "<h3>Ginger: A Journey into the Versatile Root with Countless Benefits</h3>\nDive into the fascinating story of ginger, a versatile root that has traveled across continents and centuries. From Asia to the West, discover how ginger has left its mark on culinary and cultural traditions around the world. This book explores the uses, benefits, and secrets of this timeless root, essential in both cooking and wellness.\n\nPerfect for cooking enthusiasts and wellness seekers, this book invites you to rediscover ginger in all its forms, with anecdotes, tips, and ideas to easily incorporate it into your daily life.",
-    price: 10,
+    price: 5,
     image: getProductImage("Ginger in all its flavor - e book"),
     category: "grater-cookbooks",
     type: "digital",
@@ -396,7 +397,7 @@ export const products: Product[] = [
     name: "💻 Alles over gember (Nederlands)",
     description: "Complete gember gids - E-book in het Nederlands",
     longDescription: "<h3>Gember: Een reis naar de veelzijdige wortel met talloze voordelen</h3>\nDuik in het fascinerende verhaal van gember, deze veelzijdige wortel die continenten en eeuwen heeft doorkruist. Van Azië tot het Westen, ontdek hoe gember zijn stempel heeft gedrukt op de culinaire en culturele tradities wereldwijd. Dit boek onderzoekt de toepassingen, de voordelen en de geheimen van deze tijdloze wortel, onmisbaar in de keuken en voor de gezondheid.\n\nIdeaal voor kookliefhebbers en wellness-enthousiastelingen, nodigt dit boek je uit om gember in al zijn vormen opnieuw te ontdekken, met anekdotes, tips en ideeën om het gemakkelijk in je dagelijks leven op te nemen.",
-    price: 10,
+    price: 5,
     image: getProductImage("Alles over gember - e book"),
     category: "grater-cookbooks",
     type: "digital",
