@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { products } from "@/data/products";
 import { getCategoryConfig } from "@/data/categories";
+import { getProductImage } from "@/utils/imageUtils";
 import { ProductCategory, ProductFilter } from "@/types/product";
 import { Search, Filter } from "lucide-react";
 
@@ -141,6 +142,7 @@ const Products = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredProducts.map((product) => {
               const categoryConfig = getCategoryConfig(product.category);
+              const productImageSrc = getProductImage(product.name);
               
               return (
                 <Card key={product.id} className="group hover-lift border-tipikli-beige-dark bg-white shadow-natural">
@@ -148,7 +150,7 @@ const Products = () => {
                     <div className="relative mb-6">
                       <div className="w-full h-48 bg-gradient-warm rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
                         <img 
-                          src={product.image} 
+                          src={productImageSrc} 
                           alt={product.name}
                           className="w-full h-full object-cover rounded-2xl"
                           onError={(e) => {
