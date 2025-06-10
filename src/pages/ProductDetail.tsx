@@ -82,12 +82,12 @@ const ProductDetail = () => {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Product Image */}
             <div className="space-y-6">
-              <Card className="p-8">
-                <div className="w-full h-80 bg-gradient-to-br from-tipikli-sage/20 to-tipikli-wood/20 rounded-3xl flex items-center justify-center mx-auto mb-6 overflow-hidden">
+              <Card className="p-4">
+                <div className="w-full aspect-square bg-gradient-to-br from-tipikli-beige to-white rounded-3xl flex items-center justify-center mx-auto mb-6 overflow-hidden">
                   <img 
                     src={selectedVariantData?.image || product.image} 
                     alt={product.name}
-                    className="w-full h-full object-cover rounded-3xl"
+                    className="w-full h-full object-contain p-6"
                     onError={(e) => {
                       // Fallback to icon if image fails to load
                       const target = e.target as HTMLImageElement;
