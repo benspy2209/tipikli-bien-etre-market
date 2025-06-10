@@ -48,6 +48,7 @@ const productImageMap: Record<string, string> = {
 
 export const getProductImage = (productName: string, cityName?: string): string => {
   console.log('🔍 getProductImage called with:', { productName, cityName });
+  console.log('📋 Available product names in mapping:', Object.keys(productImageMap));
   
   // D'abord chercher dans les images de produits spécifiques
   if (productImageMap[productName]) {
@@ -61,7 +62,9 @@ export const getProductImage = (productName: string, cityName?: string): string 
     return cityImageMap[cityName];
   }
   
-  console.log('❌ No image found, using fallback');
+  console.log('❌ No image found for product:', productName);
+  console.log('❌ Available keys:', Object.keys(productImageMap));
+  console.log('❌ Using fallback image');
   // Image par défaut
   return "/images/test.png";
 };
