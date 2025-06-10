@@ -53,23 +53,19 @@ const EssentialsSection = () => {
                   {/* Badge et image */}
                   <div className="relative mb-6">
                     <div className="w-20 h-20 bg-gradient-to-br from-tipikli-sage/20 to-tipikli-wood/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                      {productImageSrc !== "/images/test.png" ? (
-                        <img 
-                          src={productImageSrc} 
-                          alt={product.name}
-                          className="w-full h-full object-cover rounded-2xl"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
-                            const parent = target.parentElement;
-                            if (parent) {
-                              parent.innerHTML = `<span class="text-3xl">${categoryConfig.icon}</span>`;
-                            }
-                          }}
-                        />
-                      ) : (
-                        <span className="text-3xl">{categoryConfig.icon}</span>
-                      )}
+                      <img 
+                        src={productImageSrc} 
+                        alt={product.name}
+                        className="w-full h-full object-cover rounded-2xl"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const parent = target.parentElement;
+                          if (parent) {
+                            parent.innerHTML = `<span class="text-3xl">${categoryConfig.icon}</span>`;
+                          }
+                        }}
+                      />
                     </div>
                     
                     {product.badge && (
