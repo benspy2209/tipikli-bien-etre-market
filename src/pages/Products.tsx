@@ -42,12 +42,12 @@ const Products = () => {
     switch (badge) {
       case "Best-seller": return "bg-red-500";
       case "Nouveau": return "bg-green-500";
-      case "Artisanal": return "bg-tipikli-wood";
+      case "Artisanal": return "bg-tipikli-terre";
       case "Populaire": return "bg-blue-500";
       case "Pratique": return "bg-purple-500";
-      case "Économique": return "bg-orange-500";
+      case "Économique": return "bg-tipikli-orange";
       case "Innovation": return "bg-pink-500";
-      default: return "bg-tipikli-sage";
+      default: return "bg-tipikli-noir";
     }
   };
 
@@ -59,10 +59,10 @@ const Products = () => {
         <div className="container mx-auto px-4 py-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-display font-bold text-tipikli-sage-dark mb-4">
+            <h1 className="text-3xl md:text-4xl font-display font-bold text-tipikli-noir mb-4">
               La gamme The Grater
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-tipikli-noir/70 max-w-2xl mx-auto">
               Découvrez nos 5 gammes de produits The Grater, testés et approuvés
             </p>
           </div>
@@ -70,18 +70,18 @@ const Products = () => {
           {/* Search and Filters */}
           <div className="flex flex-col lg:flex-row gap-4 mb-8">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-tipikli-noir/50 w-4 h-4" />
               <Input
                 placeholder="Rechercher un produit The Grater..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
+                className="pl-10 border-tipikli-beige-dark focus:border-tipikli-jaune"
               />
             </div>
             
             <div className="flex flex-wrap gap-4">
               <Select onValueChange={(value) => setFilters(prev => ({ ...prev, category: value === 'all' ? undefined : value as ProductCategory }))}>
-                <SelectTrigger className="w-[200px]">
+                <SelectTrigger className="w-[200px] border-tipikli-beige-dark">
                   <Filter className="w-4 h-4 mr-2" />
                   <SelectValue placeholder="Gamme The Grater" />
                 </SelectTrigger>
@@ -96,7 +96,7 @@ const Products = () => {
               </Select>
 
               <Select onValueChange={(value) => setFilters(prev => ({ ...prev, type: value === 'all' ? undefined : value as any }))}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-[180px] border-tipikli-beige-dark">
                   <SelectValue placeholder="Type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -117,7 +117,7 @@ const Products = () => {
                   priceRange: value === 'all' ? undefined : ranges[value as keyof typeof ranges] as [number, number] 
                 }));
               }}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-[180px] border-tipikli-beige-dark">
                   <SelectValue placeholder="Prix" />
                 </SelectTrigger>
                 <SelectContent>
@@ -132,7 +132,7 @@ const Products = () => {
 
           {/* Results count */}
           <div className="mb-6">
-            <p className="text-muted-foreground">
+            <p className="text-tipikli-noir/70">
               {filteredProducts.length} produit{filteredProducts.length > 1 ? 's' : ''} trouvé{filteredProducts.length > 1 ? 's' : ''}
             </p>
           </div>
@@ -143,10 +143,10 @@ const Products = () => {
               const categoryConfig = getCategoryConfig(product.category);
               
               return (
-                <Card key={product.id} className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-tipikli-beige bg-white">
+                <Card key={product.id} className="group hover-lift border-tipikli-beige-dark bg-white shadow-natural">
                   <CardContent className="p-6">
                     <div className="relative mb-6">
-                      <div className="w-full h-48 bg-gradient-to-br from-tipikli-sage/20 to-tipikli-wood/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+                      <div className="w-full h-48 bg-gradient-warm rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
                         <img 
                           src={product.image} 
                           alt={product.name}
@@ -157,7 +157,7 @@ const Products = () => {
                             target.style.display = 'none';
                             const parent = target.parentElement;
                             if (parent) {
-                              parent.innerHTML = `<span class="text-6xl">${categoryConfig.icon}</span>`;
+                              parent.innerHTML = `<span class="text-6xl text-tipikli-orange">${categoryConfig.icon}</span>`;
                             }
                           }}
                         />
@@ -172,37 +172,37 @@ const Products = () => {
 
                     <div className="space-y-4">
                       <div className="text-center">
-                        <p className="text-xs text-tipikli-sage font-medium mb-1">
+                        <p className="text-xs text-tipikli-orange font-medium mb-1">
                           {categoryConfig.name}
                         </p>
-                        <h3 className="font-semibold text-lg text-tipikli-sage-dark leading-tight">
+                        <h3 className="font-semibold text-lg text-tipikli-noir leading-tight">
                           {product.name}
                         </h3>
                       </div>
                       
-                      <p className="text-sm text-muted-foreground line-clamp-2 text-center">
+                      <p className="text-sm text-tipikli-noir/70 line-clamp-2 text-center">
                         {product.description}
                       </p>
 
                       {product.variants && product.variants.length > 0 && (
-                        <div className="text-xs text-muted-foreground text-center">
+                        <div className="text-xs text-tipikli-noir/60 text-center">
                           <span className="font-medium">{product.variants.length} variantes disponibles</span>
                         </div>
                       )}
 
                       <div className="flex items-center justify-center space-x-2">
-                        <span className="text-xl font-bold text-tipikli-sage-dark">
+                        <span className="text-xl font-bold text-tipikli-noir">
                           {product.price}€
                         </span>
                         {product.originalPrice && (
-                          <span className="text-sm text-muted-foreground line-through">
+                          <span className="text-sm text-tipikli-noir/50 line-through">
                             {product.originalPrice}€
                           </span>
                         )}
                       </div>
 
                       <Link to={`/product/${product.id}`} className="block">
-                        <Button className="w-full bg-tipikli-sage hover:bg-tipikli-sage-dark text-white transition-all duration-300">
+                        <Button className="w-full bg-gradient-to-r from-tipikli-jaune to-tipikli-orange hover:from-tipikli-jaune/90 hover:to-tipikli-orange/90 text-tipikli-noir font-medium transition-all duration-300 shadow-warm hover-lift">
                           Voir le produit
                         </Button>
                       </Link>
@@ -215,7 +215,7 @@ const Products = () => {
 
           {filteredProducts.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-lg text-muted-foreground">Aucun produit ne correspond à vos critères de recherche.</p>
+              <p className="text-lg text-tipikli-noir/70">Aucun produit ne correspond à vos critères de recherche.</p>
             </div>
           )}
         </div>
