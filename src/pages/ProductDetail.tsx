@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -46,11 +45,17 @@ const ProductDetail = () => {
 
   // Fonction pour obtenir l'image appropriée
   const getCurrentImage = () => {
+    // Si une variante est sélectionnée, utiliser son nom
     if (selectedVariantData?.name) {
-      // Utiliser getProductImage avec le nom de la variante pour les mousseurs
       return getProductImage(selectedVariantData.name);
     }
-    // Pour l'affichage par défaut, utiliser l'image du produit principal
+    
+    // Pour le mousseur de lait sans variante sélectionnée, utiliser l'image foncée par défaut
+    if (product.category === "milk-frother") {
+      return getProductImage("Foncé");
+    }
+    
+    // Pour les autres produits, utiliser l'image du produit principal
     return selectedVariantData?.image || product.image;
   };
 
