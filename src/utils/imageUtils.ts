@@ -1,4 +1,3 @@
-
 // Mapping des noms de villes vers les fichiers images locaux
 const cityImageMap: Record<string, string> = {
   "Ath": "/images/Ath.jpeg",
@@ -38,7 +37,7 @@ const productImageMap: Record<string, string> = {
   "Alles over gember - e book": "/images/Alles_over_gember_-_e_book.png",
   "Alles over knoflook - e-book": "/images/Alles_over_knoflook_-_e-book.png",
   "Ginger in all its flavor - e book": "/images/Ginger_in_all_its_flavor_-_e_book.png",
-  "L'ail dans tous ses états, l'ebook": "/images/L'ail_dans_tous_ses_états,_l'ebook.png",
+  "L'ail dans tous ses états, l'ebook": "/images/ail.png",
   "L'ail dans tous ses états (Français)": "/images/ail.png",
   "Le gingembre dans tous ses états - l'e book": "/images/Le_gingembre_png",
   "Le gingembre dans tous ses états (Français)": "/images/Le_gingembre_png",
