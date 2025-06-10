@@ -3,70 +3,88 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Système de design Tipikli - couleurs marché et bien-être */
+/* Import des polices Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Caveat:wght@400;500;600&display=swap');
+
+/* Système de design Tipikli - Identité moderne, élégante et chaleureuse */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Couleurs de base - palette naturelle et chaleureuse */
+    --background: 43 15% 97%; /* Beige naturel très clair */
+    --foreground: 210 15% 15%; /* Anthracite pour le texte */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 43 20% 95%; /* Beige légèrement plus foncé pour les cartes */
+    --card-foreground: 210 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 15% 15%;
 
-    --primary: 91 20% 65%; /* Vert sauge */
-    --primary-foreground: 0 0% 100%;
+    /* Couleurs principales - dégradé jaune-orange pour vitalité */
+    --primary: 45 100% 60%; /* Jaune lumineux */
+    --primary-foreground: 210 15% 15%;
 
-    --secondary: 30 20% 95%; /* Beige clair */
-    --secondary-foreground: 30 15% 25%;
+    /* Couleurs secondaires - beige texturé */
+    --secondary: 43 25% 92%; /* Beige naturel texturé */
+    --secondary-foreground: 210 15% 25%;
 
-    --muted: 30 15% 92%;
-    --muted-foreground: 30 10% 45%;
+    --muted: 43 15% 90%;
+    --muted-foreground: 210 10% 45%;
 
-    --accent: 91 25% 70%; /* Vert sauge plus clair */
+    /* Accent - orange doux pour les interactions */
+    --accent: 25 85% 65%; /* Orange doux */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 30 15% 88%;
-    --input: 30 15% 88%;
-    --ring: 91 20% 65%;
+    --border: 43 20% 85%;
+    --input: 43 20% 88%;
+    --ring: 45 100% 60%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    /* Couleurs personnalisées Tipikli */
-    --tipikli-sage: 91 20% 65%; /* Vert sauge principal */
-    --tipikli-sage-light: 91 25% 75%;
-    --tipikli-sage-dark: 91 25% 50%;
-    --tipikli-beige: 30 20% 95%;
-    --tipikli-beige-dark: 30 25% 85%;
-    --tipikli-wood: 25 30% 80%;
-    --tipikli-cream: 45 25% 98%;
+    /* Couleurs personnalisées Tipikli - nouvelle palette */
+    --tipikli-beige: 43 25% 92%; /* Beige naturel texturé */
+    --tipikli-beige-light: 43 20% 96%;
+    --tipikli-beige-dark: 43 30% 85%;
+    
+    --tipikli-noir: 210 15% 15%; /* Noir mat/anthracite */
+    --tipikli-noir-light: 210 10% 25%;
+    
+    --tipikli-jaune: 45 100% 60%; /* Jaune lumineux */
+    --tipikli-jaune-light: 48 100% 70%;
+    
+    --tipikli-orange: 25 85% 65%; /* Orange doux */
+    --tipikli-orange-light: 28 80% 75%;
+    
+    --tipikli-terre: 15 45% 60%; /* Terre cuite pour Tipikli Me */
+    --tipikli-rose: 345 35% 75%; /* Vieux rose */
+    --tipikli-sable: 35 25% 80%; /* Sable rosé */
+    
+    --tipikli-cream: 45 30% 98%; /* Crème naturelle */
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 91 20% 65%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --background: 210 15% 8%;
+    --foreground: 43 15% 95%;
+    --card: 210 15% 10%;
+    --card-foreground: 43 15% 95%;
+    --popover: 210 15% 8%;
+    --popover-foreground: 43 15% 95%;
+    --primary: 45 100% 55%;
+    --primary-foreground: 210 15% 8%;
+    --secondary: 210 15% 12%;
+    --secondary-foreground: 43 15% 95%;
+    --muted: 210 15% 12%;
+    --muted-foreground: 43 10% 65%;
+    --accent: 25 85% 60%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 210 15% 20%;
+    --input: 210 15% 15%;
+    --ring: 45 100% 55%;
   }
 }
 
@@ -76,46 +94,164 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', 'DM Sans', system-ui, sans-serif;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium text-tipikli-noir;
+    font-family: 'DM Sans', 'Inter', sans-serif;
+    line-height: 1.2;
+  }
+
+  p {
+    @apply text-tipikli-noir/80;
+    line-height: 1.7;
   }
 }
 
-/* Animations personnalisées pour Tipikli */
+/* Animations personnalisées pour Tipikli - plus douces et élégantes */
 @layer utilities {
   .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
+    animation: fadeInUpSoft 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeInSoft 0.6s ease-out forwards;
   }
 
   .animate-bounce-gentle {
-    animation: bounceGentle 2s infinite;
+    animation: bounceGentle 3s ease-in-out infinite;
   }
 
   .animate-pulse-soft {
-    animation: pulseSoft 3s infinite;
+    animation: pulseSoft 4s ease-in-out infinite;
   }
 
-  .text-gradient-sage {
-    background: linear-gradient(135deg, hsl(var(--tipikli-sage)) 0%, hsl(var(--tipikli-sage-light)) 100%);
+  .animate-slide-up {
+    animation: slideUpSoft 0.7s ease-out forwards;
+  }
+
+  /* Dégradés modernes */
+  .text-gradient-warm {
+    background: linear-gradient(135deg, hsl(var(--tipikli-jaune)) 0%, hsl(var(--tipikli-orange)) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .bg-gradient-market {
-    background: linear-gradient(135deg, hsl(var(--tipikli-cream)) 0%, hsl(var(--tipikli-beige)) 50%, hsl(var(--tipikli-wood)) 100%);
+  .text-gradient-earth {
+    background: linear-gradient(135deg, hsl(var(--tipikli-terre)) 0%, hsl(var(--tipikli-rose)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
+  .bg-gradient-warm {
+    background: linear-gradient(135deg, hsl(var(--tipikli-jaune)/0.1) 0%, hsl(var(--tipikli-orange)/0.1) 100%);
+  }
+
+  .bg-gradient-natural {
+    background: linear-gradient(135deg, hsl(var(--tipikli-cream)) 0%, hsl(var(--tipikli-beige)) 50%, hsl(var(--tipikli-beige-dark)) 100%);
+  }
+
+  .bg-gradient-earth {
+    background: linear-gradient(135deg, hsl(var(--tipikli-terre)/0.1) 0%, hsl(var(--tipikli-rose)/0.1) 50%, hsl(var(--tipikli-sable)/0.1) 100%);
+  }
+
+  /* Effets glassmorphism doux */
   .glass-effect {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    background: rgba(255, 252, 247, 0.85);
+    border: 1px solid rgba(255, 252, 247, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .glass-effect-warm {
+    backdrop-filter: blur(20px);
+    background: linear-gradient(135deg, rgba(255, 248, 220, 0.9), rgba(255, 245, 210, 0.8));
+    border: 1px solid rgba(255, 248, 220, 0.4);
+    box-shadow: 0 12px 40px rgba(255, 193, 7, 0.15);
+  }
+
+  /* Ombres douces et naturelles */
+  .shadow-warm {
+    box-shadow: 0 10px 40px rgba(255, 193, 7, 0.15), 0 4px 16px rgba(0, 0, 0, 0.05);
+  }
+
+  .shadow-natural {
+    box-shadow: 0 8px 32px rgba(139, 111, 78, 0.15), 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .shadow-earth {
+    box-shadow: 0 8px 32px rgba(165, 102, 85, 0.2), 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Micro-interactions élégantes */
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(255, 193, 7, 0.2), 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .hover-glow {
+    transition: all 0.3s ease;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 30px rgba(255, 193, 7, 0.4);
+    transform: scale(1.02);
+  }
+
+  /* Typographie manuscrite pour les touches personnelles */
+  .font-handwriting {
+    font-family: 'Caveat', cursive;
+  }
+
+  .font-display {
+    font-family: 'DM Sans', 'Inter', sans-serif;
+    font-weight: 600;
+  }
+
+  /* Marges respirantes */
+  .spacing-luxury {
+    @apply px-8 py-12 md:px-16 md:py-20 lg:px-24 lg:py-28;
+  }
+
+  .spacing-section {
+    @apply px-4 py-16 md:px-8 md:py-24 lg:px-12 lg:py-32;
   }
 }
 
-@keyframes fadeInUp {
+/* Animations personnalisées */
+@keyframes fadeInUpSoft {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInSoft {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpSoft {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
   }
   to {
     opacity: 1;
@@ -128,18 +264,35 @@
     transform: translateY(0);
   }
   40% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   60% {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
   }
 }
 
 @keyframes pulseSoft {
   0%, 100% {
     opacity: 1;
+    transform: scale(1);
   }
   50% {
-    opacity: 0.7;
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+/* Boutons avec nouveau style */
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-tipikli-jaune to-tipikli-orange text-tipikli-noir font-medium px-8 py-4 rounded-2xl hover-lift shadow-warm transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply bg-tipikli-beige text-tipikli-noir border-2 border-tipikli-beige-dark font-medium px-8 py-4 rounded-2xl hover:bg-tipikli-beige-dark hover-lift transition-all duration-300;
+  }
+
+  .btn-earth {
+    @apply bg-gradient-to-r from-tipikli-terre to-tipikli-rose text-white font-medium px-8 py-4 rounded-2xl hover-lift shadow-earth transition-all duration-300;
   }
 }
