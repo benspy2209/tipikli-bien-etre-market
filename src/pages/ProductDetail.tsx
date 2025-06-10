@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -82,6 +83,15 @@ const ProductDetail = () => {
     }
   };
 
+  // Check if this is a The Grater product
+  const isTheGraterProduct = [
+    "grater-large", 
+    "grater-small", 
+    "grater-brush", 
+    "grater-peeler", 
+    "grater-cookbooks"
+  ].includes(product.category);
+
   // Check if this is the milk frother product
   const isMilkFrother = product.category === "milk-frother";
 
@@ -127,6 +137,58 @@ const ProductDetail = () => {
                   </div>
                 )}
               </Card>
+
+              {/* Video Section for The Grater Products */}
+              {isTheGraterProduct && (
+                <Card className="p-4">
+                  <div className="text-center mb-4">
+                    <h3 className="font-semibold text-lg flex items-center justify-center mb-2">
+                      <Play className="w-5 h-5 mr-2 text-tipikli-orange" />
+                      Vidéo de démonstration The Grater
+                    </h3>
+                  </div>
+                  <div 
+                    style={{ 
+                      left: 0, 
+                      width: '100%', 
+                      height: 0, 
+                      position: 'relative', 
+                      paddingBottom: '68.41%' 
+                    }}
+                  >
+                    <figure 
+                      style={{ 
+                        left: 0, 
+                        width: '100%', 
+                        height: 0, 
+                        position: 'relative', 
+                        paddingBottom: '68.41%', 
+                        marginBlockEnd: 0, 
+                        marginBlockStart: 0, 
+                        marginInlineStart: 0, 
+                        marginInlineEnd: 0 
+                      }}
+                    >
+                      <iframe 
+                        id="pv_gXp5Hcea" 
+                        src="https://media.publit.io/file/Tipikli/thegrater.html?player=none" 
+                        scrolling="no" 
+                        style={{
+                          border: 0, 
+                          top: 0, 
+                          left: 0, 
+                          width: '100%', 
+                          height: '100%', 
+                          position: 'absolute', 
+                          overflow: 'hidden'
+                        }} 
+                        allowFullScreen={true}
+                        title="The Grater Player"
+                      />
+                    </figure>
+                  </div>
+                </Card>
+              )}
 
               {/* Video Section for Milk Frother */}
               {isMilkFrother && (
