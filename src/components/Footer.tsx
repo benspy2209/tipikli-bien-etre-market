@@ -49,7 +49,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-tipikli-sage-dark text-white">
+    <footer className="bg-tipikli-noir text-white">
       {/* Section principale */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid lg:grid-cols-5 gap-12">
@@ -57,12 +57,12 @@ const Footer = () => {
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                <span className="text-tipikli-sage font-bold text-lg">T</span>
+                <span className="text-tipikli-noir font-bold text-lg">T</span>
               </div>
-              <span className="font-display font-bold text-2xl">Tipikli</span>
+              <span className="font-display font-bold text-2xl text-white">Tipikli</span>
             </div>
             
-            <p className="text-tipikli-sage-light leading-relaxed">
+            <p className="text-white/80 leading-relaxed">
               Le marché du bien-être, à vivre chaque jour. Découvrez des produits 
               authentiques, des démonstrations en live et une communauté passionnée 
               par le bien-être au quotidien.
@@ -70,15 +70,15 @@ const Footer = () => {
 
             {/* Newsletter CTA */}
             <div className="space-y-3">
-              <h4 className="font-semibold">Rejoignez nos habitués du marché</h4>
+              <h4 className="font-semibold text-white">Rejoignez nos habitués du marché</h4>
               <div className="flex flex-col sm:flex-row gap-3">
                 <input
                   type="email"
                   placeholder="Votre email"
-                  className="flex-1 px-4 py-2 rounded-lg text-tipikli-sage-dark border-0 focus:outline-none focus:ring-2 focus:ring-white"
+                  className="flex-1 px-4 py-2 rounded-lg text-tipikli-noir border-0 focus:outline-none focus:ring-2 focus:ring-tipikli-jaune"
                 />
                 <Button 
-                  className="bg-white text-tipikli-sage-dark hover:bg-tipikli-beige font-semibold"
+                  className="bg-tipikli-jaune text-tipikli-noir hover:bg-tipikli-jaune/90 font-semibold"
                 >
                   S'inscrire
                 </Button>
@@ -87,13 +87,13 @@ const Footer = () => {
 
             {/* Réseaux sociaux */}
             <div className="space-y-3">
-              <h4 className="font-semibold">Suivez-nous</h4>
+              <h4 className="font-semibold text-white">Suivez-nous</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social) => (
                   <a
                     key={social.name}
                     href={social.href}
-                    className="w-10 h-10 bg-tipikli-sage rounded-full flex items-center justify-center hover:bg-white hover:text-tipikli-sage transition-all duration-300 transform hover:scale-110"
+                    className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-tipikli-jaune hover:text-tipikli-noir transition-all duration-300 transform hover:scale-110"
                     title={social.name}
                   >
                     <span className="text-lg">{social.icon}</span>
@@ -107,13 +107,13 @@ const Footer = () => {
           <div className="lg:col-span-3 grid md:grid-cols-4 gap-8">
             {footerSections.map((section) => (
               <div key={section.title} className="space-y-4">
-                <h4 className="font-semibold text-lg">{section.title}</h4>
+                <h4 className="font-semibold text-lg text-white">{section.title}</h4>
                 <ul className="space-y-3">
                   {section.links.map((link) => (
                     <li key={link.name}>
                       <a
                         href={link.href}
-                        className="text-tipikli-sage-light hover:text-white transition-colors duration-200 text-sm"
+                        className="text-white/70 hover:text-white transition-colors duration-200 text-sm"
                       >
                         {link.name}
                       </a>
@@ -127,10 +127,10 @@ const Footer = () => {
       </div>
 
       {/* Section de fin */}
-      <div className="border-t border-tipikli-sage">
+      <div className="border-t border-white/20">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-tipikli-sage-light">
+            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-white/70">
               <span>© 2024 Tipikli. Tous droits réservés.</span>
               <div className="flex space-x-4">
                 <a href="#privacy" className="hover:text-white transition-colors">
@@ -146,7 +146,7 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center space-x-4 text-sm">
-              <span className="text-tipikli-sage-light">
+              <span className="text-white/70">
                 Fait avec ❤️ en France
               </span>
               <div className="flex space-x-2">
