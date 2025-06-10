@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { getFeaturedProducts } from "@/data/products";
 import { getCategoryConfig } from "@/data/categories";
-import { getProductImage } from "@/utils/imageUtils";
 import { useState } from "react";
 
 const EssentialsSection = () => {
@@ -42,7 +41,6 @@ const EssentialsSection = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {products.map((product) => {
             const categoryConfig = getCategoryConfig(product.category);
-            const productImageSrc = getProductImage(product.name);
             
             return (
               <Card 
@@ -53,19 +51,7 @@ const EssentialsSection = () => {
                   {/* Badge et image */}
                   <div className="relative mb-6">
                     <div className="w-20 h-20 bg-gradient-to-br from-tipikli-sage/20 to-tipikli-wood/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <img 
-                        src={productImageSrc} 
-                        alt={product.name}
-                        className="w-full h-full object-cover rounded-2xl"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          const parent = target.parentElement;
-                          if (parent) {
-                            parent.innerHTML = `<span class="text-3xl">${categoryConfig.icon}</span>`;
-                          }
-                        }}
-                      />
+                      <span className="text-3xl">{categoryConfig.icon}</span>
                     </div>
                     
                     {product.badge && (
