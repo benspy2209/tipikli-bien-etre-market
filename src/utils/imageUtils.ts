@@ -45,20 +45,28 @@ const productImageMap: Record<string, string> = {
 };
 
 export const getProductImage = (productName: string, cityName?: string): string => {
+  console.log('🔍 getProductImage called with:', { productName, cityName });
+  
   // D'abord chercher dans les images de produits spécifiques
   if (productImageMap[productName]) {
+    console.log('✅ Found product image:', productImageMap[productName]);
     return productImageMap[productName];
   }
   
   // Ensuite chercher par ville pour les graters
   if (cityName && cityImageMap[cityName]) {
+    console.log('✅ Found city image:', cityImageMap[cityName]);
     return cityImageMap[cityName];
   }
   
+  console.log('❌ No image found, using fallback');
   // Image par défaut
   return "/images/test.png";
 };
 
 export const getCityImage = (cityName: string): string => {
-  return cityImageMap[cityName] || "/images/test.png";
+  console.log('🔍 getCityImage called with:', cityName);
+  const image = cityImageMap[cityName] || "/images/test.png";
+  console.log('📷 Returning image:', image);
+  return image;
 };
