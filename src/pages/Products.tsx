@@ -143,8 +143,8 @@ const Products = () => {
               const categoryConfig = getCategoryConfig(product.category);
               
               return (
-                <Card key={product.id} className="group hover-lift border-tipikli-beige-dark bg-white shadow-natural">
-                  <CardContent className="p-6">
+                <Card key={product.id} className="group hover-lift border-tipikli-beige-dark bg-white shadow-natural h-full flex flex-col">
+                  <CardContent className="p-6 flex flex-col h-full">
                     <div className="relative mb-6">
                       <div className="w-full h-48 bg-gradient-warm rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
                         <img 
@@ -170,8 +170,8 @@ const Products = () => {
                       )}
                     </div>
 
-                    <div className="space-y-4">
-                      <div className="text-center">
+                    <div className="flex flex-col flex-grow">
+                      <div className="text-center mb-4">
                         <p className="text-xs text-tipikli-orange font-medium mb-1">
                           {categoryConfig.name}
                         </p>
@@ -180,32 +180,34 @@ const Products = () => {
                         </h3>
                       </div>
                       
-                      <p className="text-sm text-tipikli-noir/70 line-clamp-2 text-center">
+                      <p className="text-sm text-tipikli-noir/70 line-clamp-2 text-center mb-4 flex-grow">
                         {product.description}
                       </p>
 
                       {product.variants && product.variants.length > 0 && (
-                        <div className="text-xs text-tipikli-noir/60 text-center">
+                        <div className="text-xs text-tipikli-noir/60 text-center mb-4">
                           <span className="font-medium">{product.variants.length} variantes disponibles</span>
                         </div>
                       )}
 
-                      <div className="flex items-center justify-center space-x-2">
-                        <span className="text-xl font-bold text-tipikli-noir">
-                          {product.price}€
-                        </span>
-                        {product.originalPrice && (
-                          <span className="text-sm text-tipikli-noir/50 line-through">
-                            {product.originalPrice}€
+                      <div className="mt-auto space-y-4">
+                        <div className="flex items-center justify-center space-x-2">
+                          <span className="text-xl font-bold text-tipikli-noir">
+                            {product.price}€
                           </span>
-                        )}
-                      </div>
+                          {product.originalPrice && (
+                            <span className="text-sm text-tipikli-noir/50 line-through">
+                              {product.originalPrice}€
+                            </span>
+                          )}
+                        </div>
 
-                      <Link to={`/product/${product.id}`} className="block">
-                        <Button className="w-full bg-gradient-to-r from-tipikli-jaune to-tipikli-orange hover:from-tipikli-jaune/90 hover:to-tipikli-orange/90 text-tipikli-noir font-medium transition-all duration-300 shadow-warm hover-lift">
-                          Voir le produit
-                        </Button>
-                      </Link>
+                        <Link to={`/product/${product.id}`} className="block">
+                          <Button className="w-full bg-gradient-to-r from-tipikli-jaune to-tipikli-orange hover:from-tipikli-jaune/90 hover:to-tipikli-orange/90 text-tipikli-noir font-medium transition-all duration-300 shadow-warm hover-lift">
+                            Voir le produit
+                          </Button>
+                        </Link>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
