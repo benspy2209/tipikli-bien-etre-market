@@ -149,20 +149,23 @@ const Products = () => {
                   <CardContent className="p-6">
                     <div className="relative mb-6">
                       <div className="w-full h-48 bg-gradient-warm rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
-                        <img 
-                          src={productImageSrc} 
-                          alt={product.name}
-                          className="w-full h-full object-cover rounded-2xl"
-                          onError={(e) => {
-                            // Fallback to icon if image fails to load
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
-                            const parent = target.parentElement;
-                            if (parent) {
-                              parent.innerHTML = `<span class="text-6xl text-tipikli-orange">${categoryConfig.icon}</span>`;
-                            }
-                          }}
-                        />
+                        {productImageSrc !== "/images/test.png" ? (
+                          <img 
+                            src={productImageSrc} 
+                            alt={product.name}
+                            className="w-full h-full object-cover rounded-2xl"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                              const parent = target.parentElement;
+                              if (parent) {
+                                parent.innerHTML = `<span class="text-6xl text-tipikli-orange">${categoryConfig.icon}</span>`;
+                              }
+                            }}
+                          />
+                        ) : (
+                          <span className="text-6xl text-tipikli-orange">{categoryConfig.icon}</span>
+                        )}
                       </div>
                       
                       {product.badge && (
