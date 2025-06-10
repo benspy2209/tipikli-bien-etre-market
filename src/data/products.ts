@@ -1,4 +1,3 @@
-
 import { Product } from "@/types/product";
 import { getProductImage } from "@/utils/imageUtils";
 
@@ -173,7 +172,42 @@ export const products: Product[] = [
     features: ["Dimensions optimales : 20 cm de diamètre et 5 cm de profondeur", "Design ergonomique", "Matériau durable : Céramique de haute qualité", "Râpe efficace", "Entretien facile : Passe au lave-vaisselle"]
   },
 
-  // ... keep existing code (The Grater Small, Cookbooks, Brush and Peeler products)
+  // Nouveau produit : Mousseur de lait rechargeable USB
+  {
+    id: "milk-frother-usb",
+    name: "Mousseur de lait rechargeable USB (2 fouets)",
+    description: "Mousseur de lait rechargeable – L'outil moderne pour une mousse parfaite !",
+    longDescription: "Découvrez notre mousseur de lait rechargeable USB, l'accessoire indispensable pour créer une mousse de lait parfaite en quelques secondes. Avec ses 2 fouets inclus et sa batterie rechargeable, profitez d'une mousse onctueuse pour vos cappuccinos, lattes et chocolats chauds sans contrainte de piles.\n\nCaractéristiques :\n• Rechargeable USB : Autonomie longue durée, plus besoin de piles\n• 2 fouets inclus : Un fouet standard et un fouet spécialisé pour différentes textures\n• Mousse en 15 secondes : Résultat professionnel rapidement\n• Design ergonomique : Prise en main confortable et utilisation facile\n• Facile à nettoyer : Têtes amovibles, lavables à l'eau\n• 3 couleurs disponibles : Blanc, Foncé et Argenté\n\nTransformez votre routine café en expérience barista avec ce mousseur moderne et pratique !",
+    price: 40,
+    originalPrice: 59,
+    image: getProductImage("Milk Frother white"),
+    category: "grater-large",
+    type: "physical",
+    badge: "Nouveau",
+    variants: [
+      {
+        id: "milk-frother-white",
+        name: "Blanc",
+        price: 40,
+        image: getProductImage("Milk Frother white")
+      },
+      {
+        id: "milk-frother-dark",
+        name: "Foncé",
+        price: 40,
+        image: getProductImage("Milk Frother dark")
+      },
+      {
+        id: "milk-frother-silver",
+        name: "Argenté",
+        price: 40,
+        image: getProductImage("Milk Frother silver")
+      }
+    ],
+    features: ["Rechargeable USB", "2 fouets inclus", "Mousse en 15 secondes", "Design ergonomique", "Facile à nettoyer", "3 couleurs disponibles"]
+  },
+
+  // The Grater Small products
   {
     id: "grater-small-charleroi",
     name: "The Grater Small Charleroi",

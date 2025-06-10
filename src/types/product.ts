@@ -28,7 +28,8 @@ export type ProductCategory =
   | "grater-peeler" 
   | "grater-large"
   | "grater-small"
-  | "grater-cookbooks";
+  | "grater-cookbooks"
+  | "milk-frother";
 
 export type ProductType = 
   | "physical" 

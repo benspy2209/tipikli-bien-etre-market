@@ -47,6 +47,12 @@ const Products = () => {
       case "Pratique": return "bg-purple-500";
       case "Économique": return "bg-tipikli-orange";
       case "Innovation": return "bg-pink-500";
+      case "Compact": return "bg-blue-600";
+      case "Référence": return "bg-amber-600";
+      case "Numérique": return "bg-teal-500";
+      case "🇫🇷 Français": return "bg-blue-600";
+      case "🇬🇧 English": return "bg-red-600";
+      case "🇳🇱 Nederlands": return "bg-orange-600";
       default: return "bg-tipikli-noir";
     }
   };
@@ -92,6 +98,7 @@ const Products = () => {
                   <SelectItem value="grater-brush">The Grater Brush</SelectItem>
                   <SelectItem value="grater-peeler">The Grater Peeler</SelectItem>
                   <SelectItem value="grater-cookbooks">The Grater Cookbooks</SelectItem>
+                  <SelectItem value="milk-frother">Mousseur de Lait</SelectItem>
                 </SelectContent>
               </Select>
 
