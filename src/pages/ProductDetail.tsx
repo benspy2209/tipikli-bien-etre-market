@@ -7,10 +7,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { products } from "@/data/products";
 import { getCategoryConfig } from "@/data/categories";
 import { useCart } from "@/hooks/useCart";
-import { ArrowLeft, Heart, Minus, Plus, ShoppingCart } from "lucide-react";
+import { ArrowLeft, Heart, Minus, Plus, ShoppingCart, Play } from "lucide-react";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -65,6 +66,9 @@ const ProductDetail = () => {
     }
   };
 
+  // Check if this is the milk frother product
+  const isMilkFrother = product.category === "milk-frother";
+
   return (
     <div className="min-h-screen bg-tipikli-cream">
       <Header />
@@ -107,6 +111,31 @@ const ProductDetail = () => {
                   </div>
                 )}
               </Card>
+
+              {/* Video Section for Milk Frother */}
+              {isMilkFrother && (
+                <Card className="p-4">
+                  <div className="text-center mb-4">
+                    <h3 className="font-semibold text-lg flex items-center justify-center mb-2">
+                      <Play className="w-5 h-5 mr-2 text-tipikli-orange" />
+                      Vidéo de démonstration
+                    </h3>
+                  </div>
+                  <AspectRatio ratio={16 / 9}>
+                    <div 
+                      style={{ 
+                        left: 0, 
+                        width: '100%', 
+                        height: '100%', 
+                        position: 'relative' 
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: `<figure style="left: 0; width: 100%; height: 100%; position: relative; margin: 0;"><iframe id="pv_0H2mMze3" src="https://media.publit.io/file/videodemo.html?player=1" scrolling="no" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; overflow:hidden;" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe></figure>`
+                      }}
+                    />
+                  </AspectRatio>
+                </Card>
+              )}
             </div>
 
             {/* Product Info */}
