@@ -1,39 +1,45 @@
 
 import { ProductCategory } from "@/types/product";
 
-export const categoryConfig = {
+export interface CategoryConfig {
+  name: string;
+  icon: string;
+  description: string;
+}
+
+export const categoryConfigs: Record<ProductCategory, CategoryConfig> = {
   "grater-brush": {
     name: "The Grater Brush",
     icon: "🧽",
-    color: "bg-green-500",
-    description: "Brosses de nettoyage pour vos râpes"
+    description: "Brosses de nettoyage pour râpes"
   },
   "grater-peeler": {
-    name: "The Grater Peeler",
-    icon: "🔪",
-    color: "bg-red-500",
-    description: "Éplucheurs en silicone révolutionnaires"
+    name: "The Grater Peeler", 
+    icon: "🥕",
+    description: "Éplucheurs en silicone"
   },
   "grater-large": {
     name: "The Grater Large",
-    icon: "⚒️",
-    color: "bg-tipikli-wood",
-    description: "Grandes râpes testées dans les marchés"
+    icon: "🥒",
+    description: "Grandes râpes multifonctions"
   },
   "grater-small": {
     name: "The Grater Small",
-    icon: "🔧",
-    color: "bg-blue-500",
-    description: "Petites râpes compactes et efficaces"
+    icon: "🧄",
+    description: "Petites râpes spécialisées"
   },
   "grater-cookbooks": {
     name: "The Grater Cookbooks",
-    icon: "📖",
-    color: "bg-tipikli-sage",
-    description: "E-books et guides culinaires"
+    icon: "📚",
+    description: "Livres de recettes et e-books"
+  },
+  "milk-frother": {
+    name: "Mousseur de Lait",
+    icon: "☕",
+    description: "Mousseurs de lait rechargeables USB"
   }
-} as const;
+};
 
-export const getCategoryConfig = (category: ProductCategory) => {
-  return categoryConfig[category];
+export const getCategoryConfig = (category: ProductCategory): CategoryConfig => {
+  return categoryConfigs[category];
 };
