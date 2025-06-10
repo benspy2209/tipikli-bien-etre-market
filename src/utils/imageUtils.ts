@@ -1,3 +1,4 @@
+
 // Mapping des noms de villes vers les fichiers images locaux
 const cityImageMap: Record<string, string> = {
   "Ath": "/images/Ath.jpeg",
@@ -41,8 +42,8 @@ const productImageMap: Record<string, string> = {
   "Le gingembre dans tous ses états - l'e book": "/images/Le_gingembre_dans_tous_ses_états_-_l'e_book.png",
   "The grater, l'e-book": "/images/The_grater,_l'e-book.png",
   "The grater, le livre (version papier)": "/images/The_grater,_le_livre_(version_papier).png",
-  "L'ail dans tous ses états - l'e book": "/images/Lail-dans-tous-ses-etats-2024-lebook-300x300.png.webp",
-  "Le gingembre dans tous ses états - l'e book": "/images/Le-gingembre-dans-tous-ses-etats-300x300.png.webp"
+  "L'ail dans tous ses états - l'e book (2024)": "/images/Lail-dans-tous-ses-etats-2024-lebook-300x300.png.webp",
+  "Le gingembre dans tous ses états - l'e book (2024)": "/images/Le-gingembre-dans-tous-ses-etats-300x300.png.webp"
 };
 
 export const getProductImage = (productName: string, cityName?: string): string => {
