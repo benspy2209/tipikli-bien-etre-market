@@ -1,4 +1,3 @@
-
 // Mapping des noms de villes vers les fichiers images locaux
 const cityImageMap: Record<string, string> = {
   "Ath": "/images/Ath.jpeg",
