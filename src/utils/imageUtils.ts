@@ -49,13 +49,33 @@ const productImageMap: Record<string, string> = {
 
 export const getProductImage = (productName: string, cityName?: string): string => {
   console.log('🔍 getProductImage called with:', { productName, cityName });
+  console.log('🔍 Product name type:', typeof productName, 'length:', productName?.length);
+  console.log('🔍 Product name exact value:', JSON.stringify(productName));
   console.log('📋 Available product names in mapping:', Object.keys(productImageMap));
+  
+  // Vérifier si le productName est vide ou undefined
+  if (!productName || productName.trim() === '') {
+    console.log('⚠️ Product name is empty, using city fallback');
+    if (cityName && cityImageMap[cityName]) {
+      console.log('✅ Found city image:', cityImageMap[cityName]);
+      return cityImageMap[cityName];
+    }
+    console.log('❌ No city image found, using fallback');
+    return "/images/test.png";
+  }
   
   // D'abord chercher dans les images de produits spécifiques
   if (productImageMap[productName]) {
     console.log('✅ Found product image:', productImageMap[productName]);
     return productImageMap[productName];
   }
+  
+  // Vérifier les clés similaires (debugging)
+  const similarKeys = Object.keys(productImageMap).filter(key => 
+    key.toLowerCase().includes(productName.toLowerCase()) || 
+    productName.toLowerCase().includes(key.toLowerCase())
+  );
+  console.log('🔍 Similar keys found:', similarKeys);
   
   // Ensuite chercher par ville pour les graters
   if (cityName && cityImageMap[cityName]) {
