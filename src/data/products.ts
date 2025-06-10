@@ -1,3 +1,4 @@
+
 import { Product } from "@/types/product";
 import { getProductImage } from "@/utils/imageUtils";
 
@@ -181,7 +182,7 @@ export const products: Product[] = [
     price: 40,
     originalPrice: 59,
     image: getProductImage("Milk Frother white"),
-    category: "grater-large",
+    category: "milk-frother",
     type: "physical",
     badge: "Nouveau",
     variants: [
