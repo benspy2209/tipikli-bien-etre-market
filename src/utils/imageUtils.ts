@@ -39,6 +39,7 @@ const productImageMap: Record<string, string> = {
   "Alles over knoflook - e-book": "/images/Alles_over_knoflook_-_e-book.png",
   "Ginger in all its flavor - e book": "/images/Ginger_in_all_its_flavor_-_e_book.png",
   "L'ail dans tous ses états, l'ebook": "/images/L'ail_dans_tous_ses_états,_l'ebook.png",
+  "L'ail dans tous ses états (Français)": "/images/L'ail_dans_tous_ses_états,_l'ebook.png",
   "Le gingembre dans tous ses états - l'e book": "/images/Le_gingembre_dans_tous_ses_états_-_l'e_book.png",
   "The grater, l'e-book": "/images/The_grater,_l'e-book.png",
   "The grater, le livre (version papier)": "/images/The_grater,_le_livre_(version_papier).png",
