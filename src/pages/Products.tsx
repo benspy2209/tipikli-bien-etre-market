@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -55,6 +54,14 @@ const Products = () => {
       case "🇳🇱 Nederlands": return "bg-orange-600";
       default: return "bg-tipikli-noir";
     }
+  };
+
+  const getProductImage = (product: any) => {
+    // Pour le mousseur de lait, utiliser l'image foncée par défaut
+    if (product.category === "milk-frother") {
+      return "/images/frotherdark.png";
+    }
+    return product.image;
   };
 
   return (
@@ -155,7 +162,7 @@ const Products = () => {
                     <div className="relative mb-6">
                       <div className="w-full h-48 bg-gradient-warm rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
                         <img 
-                          src={product.image} 
+                          src={getProductImage(product)} 
                           alt={product.name}
                           className="w-full h-full object-cover rounded-2xl"
                           onError={(e) => {

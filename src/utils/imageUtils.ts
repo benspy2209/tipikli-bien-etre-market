@@ -1,4 +1,3 @@
-
 // Mapping des noms de villes vers les fichiers images locaux
 const cityImageMap: Record<string, string> = {
   "Ath": "/images/Ath.jpeg",
@@ -46,14 +45,14 @@ const productImageMap: Record<string, string> = {
   "The grater, le livre (version papier)": "/images/The_grater,_le_livre_(version_papier).png",
   "L'ail dans tous ses états - l'e book (2024)": "/images/Lail-dans-tous-ses-etats-2024-lebook-300x300.png.webp",
   "Le gingembre dans tous ses états - l'e book (2024)": "/images/Le-gingembre-dans-tous-ses-etats-300x300.png.webp",
-  // Images pour les variantes de mousseur avec les noms exacts
-  "Blanc": "/images/Milk Frother white.png",
-  "Foncé": "/images/Milk Frother dark.png", 
-  "Argenté": "/images/Milk Frother silver.png",
+  // Images pour les variantes de mousseur avec les vrais noms de fichiers
+  "Blanc": "/images/frrotherwhite.png",
+  "Foncé": "/images/frotherdark.png", 
+  "Argenté": "/images/frothersilver.png",
   // Également avec les noms complets au cas où
-  "Mousseur Blanc": "/images/Milk Frother white.png",
-  "Mousseur Foncé": "/images/Milk Frother dark.png",
-  "Mousseur Argenté": "/images/Milk Frother silver.png"
+  "Mousseur Blanc": "/images/frrotherwhite.png",
+  "Mousseur Foncé": "/images/frotherdark.png",
+  "Mousseur Argenté": "/images/frothersilver.png"
 };
 
 export const getProductImage = (productName: string, cityName?: string): string => {
