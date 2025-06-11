@@ -2,9 +2,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ShoppingCart } from "lucide-react";
+import { useCart } from "@/hooks/useCart";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { itemCount } = useCart();
 
   const navItems = [
     { name: "Accueil", href: "/" },
@@ -43,10 +47,27 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Actions */}
+          <div className="flex items-center space-x-4">
+            {/* Cart Icon - Plus visible */}
+            <Link to="/cart" className="relative">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="bg-tipikli-sage text-white hover:bg-tipikli-sage-dark border-tipikli-sage p-3 shadow-lg"
+              >
+                <ShoppingCart className="w-6 h-6" />
+                {itemCount > 0 && (
+                  <Badge className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 p-0 flex items-center justify-center text-xs font-bold border-2 border-white">
+                    {itemCount}
+                  </Badge>
+                )}
+              </Button>
+            </Link>
+            
+            {/* CTA Button */}
             <Button 
-              className="bg-tipikli-sage hover:bg-tipikli-sage-dark text-white transition-all duration-300 transform hover:scale-105"
+              className="hidden md:block bg-tipikli-sage hover:bg-tipikli-sage-dark text-white transition-all duration-300 transform hover:scale-105"
             >
               Rejoindre Tipikli Me
             </Button>
@@ -79,6 +100,10 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
+              <Link to="/cart" className="flex items-center space-x-2 text-sm font-medium text-foreground hover:text-tipikli-sage transition-colors duration-200">
+                <ShoppingCart className="w-4 h-4" />
+                <span>Panier ({itemCount})</span>
+              </Link>
               <Button className="bg-tipikli-sage hover:bg-tipikli-sage-dark text-white mt-4">
                 Rejoindre Tipikli Me
               </Button>
