@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -125,15 +124,13 @@ const ProductDetail = () => {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Product Image */}
             <div className="space-y-6">
-              <Card className="p-4 relative">
-                {/* Image Editor positioned over the image */}
-                <div className="absolute top-6 left-6 right-6 z-10">
-                  <ImageEditor
-                    productId={product.id}
-                    defaultImage={getDefaultImage()}
-                    onImageChange={handleImageChange}
-                  />
-                </div>
+              <Card className="p-4 relative group">
+                {/* Image Editor - overlay sur l'image */}
+                <ImageEditor
+                  productId={product.id}
+                  defaultImage={getDefaultImage()}
+                  onImageChange={handleImageChange}
+                />
                 
                 <div className="w-full aspect-square bg-gradient-to-br from-tipikli-beige to-white rounded-3xl flex items-center justify-center mx-auto mb-6 overflow-hidden">
                   <img 

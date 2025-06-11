@@ -66,92 +66,96 @@ const ImageEditor: React.FC<ImageEditorProps> = ({
     setImageError(true);
   };
 
-  if (!isEditMode) {
+  if (isEditMode) {
     return (
-      <div className="relative group">
-        <Button
-          variant="outline"
-          size="sm"
-          className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white"
-          onClick={handleEdit}
-        >
-          <Edit3 className="w-4 h-4" />
-        </Button>
-        {customImageUrl && (
-          <Button
-            variant="outline"
-            size="sm"
-            className="absolute top-2 left-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white"
-            onClick={handleReset}
-            title="Revenir à l'image par défaut"
-          >
-            <RotateCcw className="w-4 h-4" />
-          </Button>
-        )}
-      </div>
+      <Card className="absolute top-4 left-4 right-4 z-20 border-2 border-tipikli-sage">
+        <CardContent className="p-4">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="font-semibold text-lg">Mode édition d'image</h3>
+              <div className="flex space-x-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCancel}
+                >
+                  <X className="w-4 h-4 mr-1" />
+                  Annuler
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={handleSave}
+                  disabled={!tempImageUrl || imageError}
+                  className="bg-tipikli-sage hover:bg-tipikli-sage-dark"
+                >
+                  <Save className="w-4 h-4 mr-1" />
+                  Sauvegarder
+                </Button>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">URL de l'image:</label>
+              <Input
+                type="url"
+                value={tempImageUrl}
+                onChange={(e) => setTempImageUrl(e.target.value)}
+                placeholder="https://exemple.com/image.jpg"
+                className={imageError ? "border-red-500" : ""}
+              />
+              {imageError && (
+                <p className="text-sm text-red-500">
+                  Impossible de charger cette image. Vérifiez l'URL.
+                </p>
+              )}
+            </div>
+
+            {tempImageUrl && (
+              <div className="border rounded-lg p-2">
+                <p className="text-sm text-muted-foreground mb-2">Aperçu:</p>
+                <div className="w-32 h-32 bg-gray-100 rounded flex items-center justify-center overflow-hidden">
+                  <img
+                    src={tempImageUrl}
+                    alt="Aperçu"
+                    className="w-full h-full object-contain"
+                    onLoad={handleImageLoad}
+                    onError={handleImageError}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </CardContent>
+      </Card>
     );
   }
 
   return (
-    <Card className="p-4 mb-4 border-2 border-tipikli-sage">
-      <CardContent className="p-0">
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="font-semibold text-lg">Mode édition d'image</h3>
-            <div className="flex space-x-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleCancel}
-              >
-                <X className="w-4 h-4 mr-1" />
-                Annuler
-              </Button>
-              <Button
-                size="sm"
-                onClick={handleSave}
-                disabled={!tempImageUrl || imageError}
-                className="bg-tipikli-sage hover:bg-tipikli-sage-dark"
-              >
-                <Save className="w-4 h-4 mr-1" />
-                Sauvegarder
-              </Button>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium">URL de l'image:</label>
-            <Input
-              type="url"
-              value={tempImageUrl}
-              onChange={(e) => setTempImageUrl(e.target.value)}
-              placeholder="https://exemple.com/image.jpg"
-              className={imageError ? "border-red-500" : ""}
-            />
-            {imageError && (
-              <p className="text-sm text-red-500">
-                Impossible de charger cette image. Vérifiez l'URL.
-              </p>
-            )}
-          </div>
-
-          {tempImageUrl && (
-            <div className="border rounded-lg p-2">
-              <p className="text-sm text-muted-foreground mb-2">Aperçu:</p>
-              <div className="w-32 h-32 bg-gray-100 rounded flex items-center justify-center overflow-hidden">
-                <img
-                  src={tempImageUrl}
-                  alt="Aperçu"
-                  className="w-full h-full object-contain"
-                  onLoad={handleImageLoad}
-                  onError={handleImageError}
-                />
-              </div>
-            </div>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+    <>
+      {/* Bouton d'édition - visible au survol */}
+      <Button
+        variant="outline"
+        size="sm"
+        className="absolute top-6 right-6 z-10 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white shadow-lg"
+        onClick={handleEdit}
+        title="Modifier l'image"
+      >
+        <Edit3 className="w-4 h-4" />
+      </Button>
+      
+      {/* Bouton de reset - visible au survol si image personnalisée */}
+      {customImageUrl && (
+        <Button
+          variant="outline"
+          size="sm"
+          className="absolute top-6 left-6 z-10 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white shadow-lg"
+          onClick={handleReset}
+          title="Revenir à l'image par défaut"
+        >
+          <RotateCcw className="w-4 h-4" />
+        </Button>
+      )}
+    </>
   );
 };
 
