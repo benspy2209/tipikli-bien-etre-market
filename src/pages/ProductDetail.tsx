@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -13,6 +13,7 @@ import { getCategoryConfig } from "@/data/categories";
 import { getProductImage } from "@/utils/imageUtils";
 import { useCart } from "@/hooks/useCart";
 import { ArrowLeft, Heart, Minus, Plus, ShoppingCart, Play } from "lucide-react";
+import ImageEditor from "@/components/ImageEditor";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -20,6 +21,7 @@ const ProductDetail = () => {
   const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [currentDisplayImage, setCurrentDisplayImage] = useState<string>('');
 
   const product = products.find(p => p.id === id);
 
@@ -45,7 +47,7 @@ const ProductDetail = () => {
   const currentPrice = selectedVariantData?.price || product.price;
 
   // Fonction pour obtenir l'image appropriée
-  const getCurrentImage = () => {
+  const getDefaultImage = () => {
     // Si une variante est sélectionnée, utiliser son nom
     if (selectedVariantData?.name) {
       return getProductImage(selectedVariantData.name);
@@ -60,14 +62,25 @@ const ProductDetail = () => {
     return selectedVariantData?.image || product.image;
   };
 
+  // Initialize display image
+  useEffect(() => {
+    if (!currentDisplayImage) {
+      setCurrentDisplayImage(getDefaultImage());
+    }
+  }, [selectedVariant, product]);
+
   const handleAddToCart = () => {
     addToCart({
       id: selectedVariant || product.id,
       name: selectedVariantData?.name ? `${product.name} - ${selectedVariantData.name}` : product.name,
       price: currentPrice,
-      image: getCurrentImage(),
+      image: currentDisplayImage,
       quantity
     });
+  };
+
+  const handleImageChange = (newImageUrl: string) => {
+    setCurrentDisplayImage(newImageUrl);
   };
 
   const getBadgeColor = (badge: string) => {
@@ -112,10 +125,17 @@ const ProductDetail = () => {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Product Image */}
             <div className="space-y-6">
+              {/* Image Editor */}
+              <ImageEditor
+                productId={product.id}
+                defaultImage={getDefaultImage()}
+                onImageChange={handleImageChange}
+              />
+
               <Card className="p-4">
                 <div className="w-full aspect-square bg-gradient-to-br from-tipikli-beige to-white rounded-3xl flex items-center justify-center mx-auto mb-6 overflow-hidden">
                   <img 
-                    src={getCurrentImage()} 
+                    src={currentDisplayImage} 
                     alt={product.name}
                     className="w-full h-full object-contain p-6"
                     onError={(e) => {
