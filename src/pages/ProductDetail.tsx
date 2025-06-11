@@ -333,7 +333,7 @@ const ProductDetail = () => {
 
                 <div className="flex space-x-4">
                   <Button
-                    className="flex-1 bg-tipikli-sage hover:bg-tipikli-sage-dark text-white font-semibold py-3 text-lg"
+                    className="flex-1 bg-tipikli-sage hover:bg-tipikli-sage-dark text-white font-semibold py-6 text-lg h-auto min-h-[3rem]"
                     onClick={handleAddToCart}
                     size="lg"
                   >
@@ -342,7 +342,7 @@ const ProductDetail = () => {
                   </Button>
                   <Button
                     variant="outline"
-                    className="border-tipikli-sage text-tipikli-sage hover:bg-tipikli-sage hover:text-white py-3"
+                    className="border-tipikli-sage text-tipikli-sage hover:bg-tipikli-sage hover:text-white py-6 h-auto min-h-[3rem]"
                     onClick={() => setIsFavorite(!isFavorite)}
                     size="lg"
                   >
