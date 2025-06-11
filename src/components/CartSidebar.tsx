@@ -1,15 +1,22 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/hooks/useCart";
-import { ShoppingCart, X, Minus, Plus, Trash2 } from "lucide-react";
+import { ShoppingCart, X, Minus, Plus, Trash2, CreditCard } from "lucide-react";
 
 const CartSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
   const { items, total, itemCount, updateQuantity, removeFromCart, clearCart } = useCart();
+
+  const handleCheckout = () => {
+    setIsOpen(false);
+    navigate("/checkout");
+  };
 
   if (!isOpen) {
     return (
@@ -53,8 +60,20 @@ const CartSidebar = () => {
               <div className="space-y-4">
                 {items.map((item) => (
                   <div key={item.id} className="flex items-center space-x-3 bg-tipikli-cream p-3 rounded-lg">
-                    <div className="w-12 h-12 bg-gradient-to-br from-tipikli-sage/20 to-tipikli-wood/20 rounded-lg flex items-center justify-center">
-                      <span className="text-sm">📦</span>
+                    <div className="w-12 h-12 bg-gradient-to-br from-tipikli-sage/20 to-tipikli-wood/20 rounded-lg flex items-center justify-center overflow-hidden">
+                      <img 
+                        src={item.image} 
+                        alt={item.name}
+                        className="w-full h-full object-contain"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const parent = target.parentElement;
+                          if (parent) {
+                            parent.innerHTML = '<span class="text-sm">📦</span>';
+                          }
+                        }}
+                      />
                     </div>
                     
                     <div className="flex-1 min-w-0">
@@ -105,8 +124,12 @@ const CartSidebar = () => {
                 </div>
                 
                 <div className="space-y-2">
-                  <Button className="w-full bg-tipikli-sage hover:bg-tipikli-sage-dark text-white">
-                    Commander
+                  <Button 
+                    className="w-full bg-tipikli-sage hover:bg-tipikli-sage-dark text-white"
+                    onClick={handleCheckout}
+                  >
+                    <CreditCard className="w-4 h-4 mr-2" />
+                    Passer commande
                   </Button>
                   <Button 
                     variant="outline" 
