@@ -25,9 +25,16 @@ const ProductDetail = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [currentDisplayImage, setCurrentDisplayImage] = useState<string>('');
 
+  console.log("🔍 ProductDetail - Component loaded with ID:", id);
+  console.log("🔍 ProductDetail - useCart hook:", { addToCart });
+  console.log("🔍 ProductDetail - Current quantity:", quantity);
+
   const product = products.find(p => p.id === id);
 
+  console.log("🔍 ProductDetail - Found product:", product);
+
   if (!product) {
+    console.log("❌ ProductDetail - Product not found for ID:", id);
     return (
       <div className="min-h-screen bg-tipikli-cream">
         <Header />
@@ -47,6 +54,10 @@ const ProductDetail = () => {
   const categoryConfig = getCategoryConfig(product.category);
   const selectedVariantData = product.variants?.find(v => v.id === selectedVariant);
   const currentPrice = selectedVariantData?.price || product.price;
+
+  console.log("🔍 ProductDetail - Category config:", categoryConfig);
+  console.log("🔍 ProductDetail - Selected variant:", selectedVariantData);
+  console.log("🔍 ProductDetail - Current price:", currentPrice);
 
   // Fonction pour obtenir l'image appropriée
   const getDefaultImage = () => {
@@ -69,7 +80,8 @@ const ProductDetail = () => {
   }, [selectedVariant, product]);
 
   const handleAddToCart = () => {
-    addToCart({
+    console.log("🛒 ProductDetail - handleAddToCart called");
+    console.log("🛒 ProductDetail - Adding to cart:", {
       id: selectedVariant || product.id,
       name: selectedVariantData?.name ? `${product.name} - ${selectedVariantData.name}` : product.name,
       price: currentPrice,
@@ -77,10 +89,24 @@ const ProductDetail = () => {
       quantity
     });
 
-    toast({
-      title: "Produit ajouté au panier !",
-      description: `${quantity} x ${product.name} ajouté${quantity > 1 ? 's' : ''} au panier`,
-    });
+    try {
+      addToCart({
+        id: selectedVariant || product.id,
+        name: selectedVariantData?.name ? `${product.name} - ${selectedVariantData.name}` : product.name,
+        price: currentPrice,
+        image: currentDisplayImage,
+        quantity
+      });
+
+      console.log("✅ ProductDetail - Item added to cart successfully");
+
+      toast({
+        title: "Produit ajouté au panier !",
+        description: `${quantity} x ${product.name} ajouté${quantity > 1 ? 's' : ''} au panier`,
+      });
+    } catch (error) {
+      console.error("❌ ProductDetail - Error adding to cart:", error);
+    }
   };
 
   const handleImageChange = (newImageUrl: string) => {
@@ -110,6 +136,8 @@ const ProductDetail = () => {
   ].includes(product.category);
 
   const isMilkFrother = product.category === "milk-frother";
+
+  console.log("🔍 ProductDetail - Rendering component with product:", product.name);
 
   return (
     <div className="min-h-screen bg-tipikli-cream">
@@ -331,23 +359,41 @@ const ProductDetail = () => {
                   </div>
                 </div>
 
-                <div className="flex space-x-4">
-                  <Button
-                    className="flex-1 bg-tipikli-sage hover:bg-tipikli-sage-dark text-white font-semibold py-6 text-lg h-auto min-h-[3rem]"
-                    onClick={handleAddToCart}
-                    size="lg"
-                  >
-                    <ShoppingCart className="w-5 h-5 mr-2" />
-                    Ajouter au panier ({currentPrice}€)
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="border-tipikli-sage text-tipikli-sage hover:bg-tipikli-sage hover:text-white py-6 h-auto min-h-[3rem]"
-                    onClick={() => setIsFavorite(!isFavorite)}
-                    size="lg"
-                  >
-                    <Heart className={`w-5 h-5 ${isFavorite ? "fill-current" : ""}`} />
-                  </Button>
+                {/* Cart Actions Section */}
+                <div className="space-y-4">
+                  <div className="flex space-x-4">
+                    <Button
+                      className="flex-1 bg-tipikli-sage hover:bg-tipikli-sage-dark text-white font-semibold py-6 text-lg h-auto min-h-[3rem] shadow-lg border-2 border-tipikli-sage"
+                      onClick={handleAddToCart}
+                      size="lg"
+                      style={{ 
+                        backgroundColor: '#4a5d4a',
+                        color: 'white',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minHeight: '60px',
+                        fontSize: '18px',
+                        fontWeight: '600'
+                      }}
+                    >
+                      <ShoppingCart className="w-5 h-5 mr-2" />
+                      Ajouter au panier ({currentPrice}€)
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="border-tipikli-sage text-tipikli-sage hover:bg-tipikli-sage hover:text-white py-6 h-auto min-h-[3rem]"
+                      onClick={() => setIsFavorite(!isFavorite)}
+                      size="lg"
+                    >
+                      <Heart className={`w-5 h-5 ${isFavorite ? "fill-current" : ""}`} />
+                    </Button>
+                  </div>
+                  
+                  {/* Debug Info */}
+                  <div className="bg-yellow-100 p-2 rounded text-xs text-gray-600 border">
+                    <strong>Debug:</strong> Product ID: {product.id} | Price: {currentPrice}€ | Quantity: {quantity}
+                  </div>
                 </div>
               </div>
 
