@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -12,11 +13,13 @@ import { getCategoryConfig } from "@/data/categories";
 import { getProductImage } from "@/utils/imageUtils";
 import { useCart } from "@/hooks/useCart";
 import { ArrowLeft, Heart, Minus, Plus, ShoppingCart, Play } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import ImageEditor from "@/components/ImageEditor";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { addToCart } = useCart();
+  const { toast } = useToast();
   const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -47,17 +50,14 @@ const ProductDetail = () => {
 
   // Fonction pour obtenir l'image appropriée
   const getDefaultImage = () => {
-    // Si une variante est sélectionnée, utiliser son nom
     if (selectedVariantData?.name) {
       return getProductImage(selectedVariantData.name);
     }
     
-    // Pour le mousseur de lait sans variante sélectionnée, utiliser l'image foncée par défaut
     if (product.category === "milk-frother") {
       return getProductImage("Foncé");
     }
     
-    // Pour les autres produits, utiliser l'image du produit principal
     return selectedVariantData?.image || product.image;
   };
 
@@ -75,6 +75,11 @@ const ProductDetail = () => {
       price: currentPrice,
       image: currentDisplayImage,
       quantity
+    });
+
+    toast({
+      title: "Produit ajouté au panier !",
+      description: `${quantity} x ${product.name} ajouté${quantity > 1 ? 's' : ''} au panier`,
     });
   };
 
@@ -104,7 +109,6 @@ const ProductDetail = () => {
     "grater-cookbooks"
   ].includes(product.category);
 
-  // Check if this is the milk frother product
   const isMilkFrother = product.category === "milk-frother";
 
   return (
@@ -138,7 +142,6 @@ const ProductDetail = () => {
                     alt={product.name}
                     className="w-full h-full object-contain p-6"
                     onError={(e) => {
-                      // Fallback to icon if image fails to load
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';
                       const parent = target.parentElement;
@@ -209,7 +212,6 @@ const ProductDetail = () => {
                 </Card>
               )}
 
-              {/* Video Section for Milk Frother */}
               {isMilkFrother && (
                 <Card className="p-4">
                   <div className="text-center mb-4">
@@ -277,7 +279,7 @@ const ProductDetail = () => {
                       <Button
                         key={variant.id}
                         variant={selectedVariant === variant.id ? "default" : "outline"}
-                        className={`text-sm ${selectedVariant === variant.id ? "bg-tipikli-sage" : ""}`}
+                        className={`text-sm ${selectedVariant === variant.id ? "bg-tipikli-sage hover:bg-tipikli-sage-dark" : ""}`}
                         onClick={() => setSelectedVariant(variant.id)}
                       >
                         {variant.name}
@@ -307,20 +309,22 @@ const ProductDetail = () => {
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
                   <span className="font-medium">Quantité:</span>
-                  <div className="flex items-center border rounded-lg">
+                  <div className="flex items-center border rounded-lg bg-white">
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
                       disabled={quantity <= 1}
+                      className="hover:bg-tipikli-beige"
                     >
                       <Minus className="w-4 h-4" />
                     </Button>
-                    <span className="px-4 py-2 min-w-[50px] text-center">{quantity}</span>
+                    <span className="px-4 py-2 min-w-[50px] text-center font-medium">{quantity}</span>
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => setQuantity(quantity + 1)}
+                      className="hover:bg-tipikli-beige"
                     >
                       <Plus className="w-4 h-4" />
                     </Button>
@@ -329,24 +333,26 @@ const ProductDetail = () => {
 
                 <div className="flex space-x-4">
                   <Button
-                    className="flex-1 bg-tipikli-sage hover:bg-tipikli-sage-dark text-white"
+                    className="flex-1 bg-tipikli-sage hover:bg-tipikli-sage-dark text-white font-semibold py-3 text-lg"
                     onClick={handleAddToCart}
+                    size="lg"
                   >
-                    <ShoppingCart className="w-4 h-4 mr-2" />
-                    Ajouter au panier
+                    <ShoppingCart className="w-5 h-5 mr-2" />
+                    Ajouter au panier ({currentPrice}€)
                   </Button>
                   <Button
                     variant="outline"
-                    className="border-tipikli-sage text-tipikli-sage hover:bg-tipikli-sage hover:text-white"
+                    className="border-tipikli-sage text-tipikli-sage hover:bg-tipikli-sage hover:text-white py-3"
                     onClick={() => setIsFavorite(!isFavorite)}
+                    size="lg"
                   >
-                    <Heart className={`w-4 h-4 ${isFavorite ? "fill-current" : ""}`} />
+                    <Heart className={`w-5 h-5 ${isFavorite ? "fill-current" : ""}`} />
                   </Button>
                 </div>
               </div>
 
               {/* Product Type Info */}
-              <div className="bg-white p-4 rounded-lg">
+              <div className="bg-white p-4 rounded-lg border">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-muted-foreground">Type:</span>
                   <span className="font-medium">
