@@ -127,3 +127,9 @@ export const products: Product[] = [
   },
   ...pocketShotProducts
 ];
+
+// Export function to get featured products for the EssentialsSection
+export const getFeaturedProducts = (): Product[] => {
+  // Return all products for now, you can modify this logic to filter featured products
+  return products;
+};
