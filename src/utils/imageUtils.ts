@@ -55,47 +55,95 @@ const productImageMap: Record<string, string> = {
   "Mousseur Argenté": "/images/frothersilver.png"
 };
 
-export const getProductImage = (productName: string, cityName?: string): string => {
-  console.log('🔍 getProductImage called with:', { productName, cityName });
-  console.log('🔍 Product name type:', typeof productName, 'length:', productName?.length);
-  console.log('🔍 Product name exact value:', JSON.stringify(productName));
-  console.log('📋 Available product names in mapping:', Object.keys(productImageMap));
-  
-  // Vérifier si le productName est vide ou undefined
-  if (!productName || productName.trim() === '') {
-    console.log('⚠️ Product name is empty, using city fallback');
-    if (cityName && cityImageMap[cityName]) {
-      console.log('✅ Found city image:', cityImageMap[cityName]);
-      return cityImageMap[cityName];
-    }
-    console.log('❌ No city image found, using fallback');
-    return "/images/test.png";
+export const getProductImage = (productName: string, location?: string): string => {
+  // Handle Pocket Shot products with placeholder images
+  if (productName.includes("Pocket Shot USB-C")) {
+    return "https://images.unsplash.com/photo-1609592806047-beb5e8d030be?w=400&h=400&fit=crop"; // Power bank placeholder
   }
   
-  // D'abord chercher dans les images de produits spécifiques
-  if (productImageMap[productName]) {
-    console.log('✅ Found product image:', productImageMap[productName]);
-    return productImageMap[productName];
+  if (productName.includes("Pocket Shot Lightning")) {
+    return "https://images.unsplash.com/photo-1609592806047-beb5e8d030be?w=400&h=400&fit=crop"; // Power bank placeholder
   }
   
-  // Vérifier les clés similaires (debugging)
-  const similarKeys = Object.keys(productImageMap).filter(key => 
-    key.toLowerCase().includes(productName.toLowerCase()) || 
-    productName.toLowerCase().includes(key.toLowerCase())
-  );
-  console.log('🔍 Similar keys found:', similarKeys);
-  
-  // Ensuite chercher par ville pour les graters
-  if (cityName && cityImageMap[cityName]) {
-    console.log('✅ Found city image:', cityImageMap[cityName]);
-    return cityImageMap[cityName];
+  if (productName.includes("Pack de 4 Pocket Shot")) {
+    return "https://images.unsplash.com/photo-1607731734133-bb087b17ea67?w=400&h=400&fit=crop"; // Multiple power banks placeholder
   }
-  
-  console.log('❌ No image found for product:', productName);
-  console.log('❌ Available keys:', Object.keys(productImageMap));
-  console.log('❌ Using fallback image');
-  // Image par défaut
-  return "/images/test.png";
+
+  // Handle milk frother products
+  if (productName === "Milk Frother white") {
+    return "/images/frrotherwhite.png";
+  }
+  if (productName === "Milk Frother dark") {
+    return "/images/frotherdark.png";
+  }
+  if (productName === "Milk Frother silver") {
+    return "/images/frothersilver.png";
+  }
+
+  // Handle The Grater cookbook products
+  const cookbookMapping: { [key: string]: string } = {
+    "The grater, le livre (version papier)": "/images/The_grater,_le_livre_(version_papier).png",
+    "The grater, l'e-book": "/images/The_grater,_l'e-book.png",
+    "L'ail dans tous ses états, l'ebook": "/images/Lail-dans-tous-ses-etats-2024-lebook-300x300.png.webp",
+    "All about garlic - e book": "/images/All_about_garlic_-_e_book.png",
+    "Alles over knoflook - e-book": "/images/Alles_over_knoflook_-_e-book.png",
+    "Le gingembre dans tous ses états - l'e book": "/images/Le_gingembre_dans_tous_ses_états_-_l'e_book.png",
+    "Ginger in all its flavor - e book": "/images/Ginger_in_all_its_flavor_-_e_book.png",
+    "Alles over gember - e book": "/images/Alles_over_gember_-_e_book.png"
+  };
+
+  if (cookbookMapping[productName]) {
+    return cookbookMapping[productName];
+  }
+
+  // Handle The Grater Brush products
+  if (productName === "Small Brush") {
+    return "/images/Small_Brush.png";
+  }
+  if (productName === "Lot de 2 Small Brush") {
+    return "/images/Lot_de_2_Small_Brush.png";
+  }
+
+  // Handle The Grater Peeler products
+  if (productName === "Silicon Peeler") {
+    return "/images/Silicon_Peeler.png";
+  }
+
+  // Handle city-based products (The Grater Large and Small)
+  if (location) {
+    const locationImageMapping: { [key: string]: string } = {
+      "Namur": "/images/Namur.jpeg",
+      "Bastogne": "/images/Bastogne.jpeg",
+      "Brugges": "/images/Brugges.jpeg",
+      "Tournai": "/images/Tournai.jpeg",
+      "Ath": "/images/Ath.jpeg",
+      "Mouscron": "/images/Mouscron.jpeg",
+      "Waterloo": "/images/Waterloo.jpeg",
+      "Saint-Gilles": "/images/Saint-Gilles.jpeg",
+      "Evere": "/images/Evere.jpeg",
+      "Jette": "/images/Jette.jpeg",
+      "Etterbeek": "/images/Etterbeek.jpeg",
+      "Ixelles": "/images/Ixelles.jpeg",
+      "Auderghem": "/images/Auderghem.jpeg",
+      "Libramont": "/images/Libramont.jpeg",
+      "Charleroi": "/images/Charleroi.jpeg",
+      "Louvain": "/images/Louvain.jpeg",
+      "Malines": "/images/Malines.jpeg",
+      "Beveren": "/images/Beveren.jpeg",
+      "Turnhout": "/images/Turnhout.jpeg",
+      "Roeselare": "/images/Roeselare.jpeg",
+      "Saint-Nicolas": "/images/Saint-Nicolas.jpeg",
+      "Binche": "/images/Binche.jpeg",
+      "Wavre": "/images/Wavre.jpeg",
+      "Marche-en-famenne": "/images/Marche-en-famenne.jpeg",
+      "Zaventem": "/images/Zaventem.jpeg"
+    };
+
+    return locationImageMapping[location] || "/images/placeholder.png";
+  }
+
+  // Default fallback
+  return "/images/placeholder.png";
 };
 
 export const getCityImage = (cityName: string): string => {
