@@ -73,10 +73,10 @@ const Products = () => {
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-display font-bold text-tipikli-noir mb-4">
-              La gamme The Grater
+              Nos gammes de produits
             </h1>
             <p className="text-lg text-tipikli-noir/70 max-w-2xl mx-auto">
-              Découvrez nos 5 gammes de produits The Grater, testés et approuvés
+              Découvrez nos gammes The Grater et Pocket Shot, testés et approuvés
             </p>
           </div>
 
@@ -85,7 +85,7 @@ const Products = () => {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-tipikli-noir/50 w-4 h-4" />
               <Input
-                placeholder="Rechercher un produit The Grater..."
+                placeholder="Rechercher un produit..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 border-tipikli-beige-dark focus:border-tipikli-jaune"
@@ -96,16 +96,17 @@ const Products = () => {
               <Select onValueChange={(value) => setFilters(prev => ({ ...prev, category: value === 'all' ? undefined : value as ProductCategory }))}>
                 <SelectTrigger className="w-[200px] border-tipikli-beige-dark">
                   <Filter className="w-4 h-4 mr-2" />
-                  <SelectValue placeholder="Gamme The Grater" />
+                  <SelectValue placeholder="Catégorie" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Toutes les gammes</SelectItem>
+                  <SelectItem value="all">Toutes les catégories</SelectItem>
                   <SelectItem value="grater-large">The Grater Large</SelectItem>
                   <SelectItem value="grater-small">The Grater Small</SelectItem>
                   <SelectItem value="grater-brush">The Grater Brush</SelectItem>
                   <SelectItem value="grater-peeler">The Grater Peeler</SelectItem>
                   <SelectItem value="grater-cookbooks">The Grater Cookbooks</SelectItem>
                   <SelectItem value="milk-frother">Mousseur de Lait</SelectItem>
+                  <SelectItem value="pocket-shot">Pocket Shot</SelectItem>
                 </SelectContent>
               </Select>
 
