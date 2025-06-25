@@ -29,8 +29,7 @@ export type ProductCategory =
   | "grater-large"
   | "grater-small"
   | "grater-cookbooks"
-  | "milk-frother"
-  | "pocket-shot";
+  | "milk-frother";
 
 export type ProductType = 
   | "physical" 

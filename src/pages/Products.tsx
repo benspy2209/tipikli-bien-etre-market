@@ -106,7 +106,6 @@ const Products = () => {
                   <SelectItem value="grater-peeler">The Grater Peeler</SelectItem>
                   <SelectItem value="grater-cookbooks">The Grater Cookbooks</SelectItem>
                   <SelectItem value="milk-frother">Mousseur de Lait</SelectItem>
-                  <SelectItem value="pocket-shot">Pocket Shot</SelectItem>
                 </SelectContent>
               </Select>
 
