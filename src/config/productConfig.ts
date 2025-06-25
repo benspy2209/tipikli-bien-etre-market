@@ -86,6 +86,18 @@ export const generateProductId = (name: string, category: string): string => {
   return `${category}-${cleanName}`;
 };
 
+// Fonction pour générer un ID de variant
+export const generateVariantId = (productId: string, variantName: string): string => {
+  const cleanVariantName = variantName
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim();
+  
+  return `${productId}-${cleanVariantName}`;
+};
+
 // Fonction pour obtenir l'image par défaut basée sur la catégorie et le nom
 export const getDefaultImage = (category: string, name: string): string => {
   // Pour les produits avec localisation (comme The Grater Large/Small)
@@ -110,8 +122,10 @@ export const createProduct = (template: ProductTemplate) => {
     throw new Error(`Catégorie inconnue: ${category}. Catégories disponibles: ${Object.keys(categoryDefaults).join(', ')}`);
   }
 
+  const productId = generateProductId(template.name, category);
+
   return {
-    id: generateProductId(template.name, category),
+    id: productId,
     name: template.name,
     description: template.description,
     longDescription: template.longDescription || template.description,
@@ -122,7 +136,14 @@ export const createProduct = (template: ProductTemplate) => {
     type: template.type,
     badge: template.badge || categoryConfig.defaultBadge,
     features: template.features || [],
-    variants: template.variants
+    variants: template.variants?.map(variant => ({
+      id: generateVariantId(productId, variant.name),
+      name: variant.name,
+      price: variant.price,
+      image: variant.image,
+      language: variant.language,
+      location: variant.location
+    }))
   };
 };
 
