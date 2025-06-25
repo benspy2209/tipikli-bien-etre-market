@@ -37,6 +37,11 @@ export const categoryConfigs: Record<ProductCategory, CategoryConfig> = {
     name: "Mousseur de Lait",
     icon: "☕",
     description: "Mousseurs de lait rechargeables USB"
+  },
+  "pocket-shot": {
+    name: "Pocket Shot",
+    icon: "🔋",
+    description: "Batteries externes compactes"
   }
 };
 
